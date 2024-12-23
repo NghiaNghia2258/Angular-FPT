@@ -7,7 +7,7 @@ import { CategoryUpdateComponent } from './features/category/category-update/cat
 export const routes: Routes = [
     {
         path:'',
-        component:AppComponent
+        component:CategoryListComponent
     },
     {
         path:'admin/categories',

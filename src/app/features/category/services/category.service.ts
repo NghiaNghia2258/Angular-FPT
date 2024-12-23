@@ -8,24 +8,24 @@ import { RequestCategoryUpdate } from '../models/update-category-requset.model';
   providedIn: 'root'
 })
 export class CategoryService {
-
+  root: string = 'https://localhost:7011/api/Category';
   constructor(private http:HttpClient) { }
 
   addCategory(model:RequestCategory):Observable<void>{
-    return this.http.post<void>('https://localhost:7011/api/CategoryCTRL/Create',model);
+    return this.http.post<void>(`${this.root}/Create`,model);
   }
 
   getAllCategory(): Observable<RequestCategory[]> {
-    return this.http.get<RequestCategory[]>(`https://localhost:7011/api/CategoryCTRL/Get_all_category`);
+    return this.http.get<RequestCategory[]>(`${this.root}/Get_all_category`);
   }
   deleteCategory(Id:string):Observable<void>{
-    return this.http.delete<void>(`https://localhost:7011/api/CategoryCTRL/delete_category?id=${Id}`);
+    return this.http.delete<void>(`${this.root}/delete_category?id=${Id}`);
   }
 
   GetById(Id:string):Observable<RequestCategory>{
-    return this.http.get<RequestCategory>(`https://localhost:7011/api/CategoryCTRL/Get_BY_ID?id=${Id}`);
+    return this.http.get<RequestCategory>(`${this.root}/Get_BY_ID?id=${Id}`);
   }
   updateCategory(model:RequestCategoryUpdate):Observable<void>{
-    return this.http.put<void>(`https://localhost:7011/api/CategoryCTRL/update_category?id=${model.id}`,model);
+    return this.http.put<void>(`${this.root}/update_category?id=${model.id}`,model);
   }
 }

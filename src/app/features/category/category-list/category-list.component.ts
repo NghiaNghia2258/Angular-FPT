@@ -24,7 +24,6 @@ export class CategoryListComponent implements OnInit {
     this.categoryServices.getAllCategory().subscribe({
       next: (data) => {
         this.categories = data;
-        console.log('Danh sách danh mục:', this.categories);
       },
       error: (err) => {
         console.error('Lỗi khi lấy danh sách danh mục:', err);
