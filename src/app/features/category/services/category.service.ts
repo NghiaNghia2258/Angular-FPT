@@ -18,6 +18,6 @@ export class CategoryService {
     return this.http.put<void>(`https://localhost:7011/api/CategoryCTRL/update_category?id=${model.id}`,model);
   }
   getbyidCategory(id:string):Observable<any>{
-    return this.http.get<any>(`https://localhost:7011/api/Category/Get_BY_ID?id=${id}`);
+    return this.http.get<any>(`https://localhost:7011/api/CategoryCTRL/Get_BY_ID?id=${id}`);
   }
 }
