@@ -17,6 +17,7 @@ export class CategoryAddComponent {
 
   constructor(private categoryServices:CategoryService){
     this.model={
+      id:"",
       name:'',
       urlHandle:''
     }
@@ -29,7 +30,12 @@ export class CategoryAddComponent {
     this.addCategorySubscription= this.categoryServices.addCategory(this.model).subscribe(
       {
         next:Response=>{
-          console.log('thành công')
+          alert(`Đã thêm thành công ${this.model.name}`);
+          this.model={
+            id:"",
+            name:'',
+            urlHandle:''
+          }
         },
         error:err=>{
           console.log('lỗi');
@@ -37,4 +43,6 @@ export class CategoryAddComponent {
       }
     );
   }
+
+  
 }

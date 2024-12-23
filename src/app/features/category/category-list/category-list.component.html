@@ -1,9 +1,33 @@
 <div class="container">
-    <h1 class="mt3">Category List</h1>
+    <h1 class="mt-3">Category List</h1>
     <div class="d-flex justify-content-end mt-3">
         <a href="admin/categories/add">
-            <button > add</button>
+            <button class="btn btn-primary " > add</button>
         </a>
+        <a href="admin/categories/add">
+            <button class="btn btn-primary " > Update</button>
+        </a>
+        <div class="mt-4 container mt-5"  >
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Name</th>
+                        <th>Url Handle</th>
+                        <th colspan="2"> Chức năng</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let category of categories; let i = index">
+                        <td>{{ i + 1 }}</td>
+                        <td>{{ category.name }}</td>
+                        <td>{{ category.urlHandle }}</td>
+                        <td><button class="btn-outline-success" (click)="onDelete(category.id)">Delete</button></td>
+                        <td><button class="btn-outline-success" (click)="getById(category.id)">Update </button></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
     </div>
         
 </div>
