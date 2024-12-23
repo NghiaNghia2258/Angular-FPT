@@ -1,0 +1,18 @@
+<div class="container">
+    <h1 class="mt-3">Update Category</h1>
+    <form #form="ngForm"  (ngSubmit)="onFormSubmit()">
+        <div class="mt-2">
+            <div class="mt-3">
+                <label for="categoryName">Category Name</label>
+                <input type="text" id="categoryName" name="categoryName" [(ngModel)]="model.name" class="form-control">
+            </div>
+            <div class="mt-3">
+                <label for="categoryHandel">Category Handel</label>
+                <input type="text" id="categoryHandel" name="categoryHandel" [(ngModel)]="model.urlHandle" class="form-control">
+            </div>
+            <div class="mt-3">
+                <button class="btn btn-primary" type="submit"> Supmit</button>
+            </div>
+        </div>
+    </form>
+</div>
