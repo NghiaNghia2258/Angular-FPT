@@ -33,17 +33,8 @@ export class CategoryListComponent implements OnInit {
   }
 
 
-  getById(Id: string): void {
-    this.categoryServices.GetById(Id).subscribe({
-      next: (data) => {
-        this.model = data;  
-        this.router.navigate(['/admin/categories/add'], { state: { categoryData: this.model } });
-
-      },
-      error: (err) => {
-        alert("Lỗi server!");
-      }
-    });
+  update(Id: string): void {
+    this.router.navigate([`admin/categories/update/${Id}`]);
   }
 
  
