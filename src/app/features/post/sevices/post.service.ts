@@ -10,13 +10,10 @@ export class PostService {
 
    constructor(private http:HttpClient) { }
     addPost(model:any):Observable<void>{
-    console.log('Dữ liệu gửi lên:', model); 
-
-    return of(undefined);
+      return this.http.post<void>(`${BASE_URL}/PostCtrl/Create_post`,model);
     }
     updatePost(id: string, model: any): Observable<void> {
-      console.log(`Cập nhật danh mục với ID: ${id}`, model); 
-      return of(undefined);  
+      return this.http.put<void>(`${BASE_URL}/PostCtrl/update_Post?id=${model.id}`,model);
     }
     getPostById(id: string): Observable<any> {
       console.log(`Lấy thông tin danh mục với ID: ${id}`);
@@ -24,7 +21,7 @@ export class PostService {
       const fakePost = {
         id: id,
         name: 'Danh Mục Fake',
-        urlHandle: 'danh-muc-fake'
+        urlHandlle: 'danh-muc-fake'
       };
   
       return of(fakePost); 

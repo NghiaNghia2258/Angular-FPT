@@ -21,10 +21,10 @@ export class PostUpdateComponent {
     publishedDate: '',
     author: '',
     isVisible: false,
-    categoryId: ''
+    catagoryId: ''
   };
   id: string = "";
-  categories: any[] = []; // Danh sách category sẽ được lấy từ API.
+  categories: any[] = []; 
 
   constructor(
     private categoryServices: CategoryService,  
@@ -54,6 +54,13 @@ export class PostUpdateComponent {
   }
 
   onFormSubmit(): void {
-    console.log('Form submitted:', this.model);
+    this.postService.updatePost(this.model.id,this.model).subscribe(
+      (post) => {
+        this.model = post;
+      },
+      (error) => {
+        console.error('Đã có lỗi xảy ra khi lấy danh mục:', error);
+      }
+    );
   }
 }
