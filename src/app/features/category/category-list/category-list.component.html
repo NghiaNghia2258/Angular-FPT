@@ -1,12 +1,11 @@
 <div class="container">
-    <h1 class="mt-3">Category List</h1>
-    <div class="d-flex justify-content-end mt-3">
+    <h1 class="mt-3">Danh sách</h1>
+    <div class="justify-content-end mt-3">
+       <div style="padding: 0 10px; display: flex;justify-content: end;">
         <a href="admin/categories/add">
-            <button class="btn btn-primary " > add</button>
+            <button class="btn btn-primary " > Thêm mới</button>
         </a>
-        <a href="admin/categories/add">
-            <button class="btn btn-primary " > Update</button>
-        </a>
+       </div>
         <div class="mt-4 container mt-5"  >
             <table class="table table-bordered">
                 <thead>
@@ -22,8 +21,12 @@
                         <td>{{ i + 1 }}</td>
                         <td>{{ category.name }}</td>
                         <td>{{ category.urlHandle }}</td>
-                        <td><button class="btn-outline-success" (click)="onDelete(category.id)">Delete</button></td>
-                        <td><button class="btn-outline-success" (click)="update(category.id)">Update </button></td>
+                        <td>
+                            <div style="display: flex;gap: 10px;">
+                                <button (click)="update(category.id)">Sửa</button>
+                                <button  (click)="onDelete(category.id)">Xóa</button>
+                            </div>
+                        </td>
                     </tr>
                 </tbody>
             </table>
