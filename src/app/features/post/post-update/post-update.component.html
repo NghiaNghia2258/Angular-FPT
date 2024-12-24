@@ -1,124 +1,145 @@
 <div class="container">
-  <h1 class="mt-3">Update Post</h1>
-  <form #form="ngForm" (ngSubmit)="onFormSubmit()">
-    <!-- Title -->
-    <div class="mt-3">
-      <label for="postTitle">Post Title</label>
-      <input
-        type="text"
-        id="postTitle"
-        name="postTitle"
-        [(ngModel)]="model.title"
-        class="form-control"
-        required
-      />
-    </div>
+  <h1 class="mt-3">Sửa Post</h1>
 
-    <!-- Short Description -->
-    <div class="mt-3">
-      <label for="shortDescription">Short Description</label>
-      <textarea
-        id="shortDescription"
-        name="shortDescription"
-        [(ngModel)]="model.shortDescription"
-        class="form-control"
-        rows="3"
-        required
-      ></textarea>
-    </div>
-
-    <!-- Content -->
-    <div class="mt-3">
-      <label for="postContent">Content</label>
-      <textarea
-        id="postContent"
-        name="postContent"
-        [(ngModel)]="model.content"
-        class="form-control"
-        rows="5"
-        required
-      ></textarea>
-    </div>
-
-    <!-- Featured Image URL -->
-    <div class="mt-3">
-      <label for="featuredImage">Featured Image URL</label>
-      <input
-        type="text"
-        id="featuredImage"
-        name="featuredImage"
-        [(ngModel)]="model.featuredImageUrl"
-        class="form-control"
-      />
-    </div>
-
-    <!-- URL Handle -->
-    <div class="mt-3">
-      <label for="urlHandle">URL Handle</label>
-      <input
-        type="text"
-        id="urlHandle"
-        name="urlHandle"
-        [(ngModel)]="model.urlHandlle"
-        class="form-control"
-      />
-    </div>
-
-    <!-- Published Date -->
-    <div class="mt-3">
-      <label for="publishedDate">Published Date</label>
-      <input
-        type="date"
-        id="publishedDate"
-        name="publishedDate"
-        [(ngModel)]="model.publishedDate"
-        class="form-control"
-      />
-    </div>
-
-    <!-- Author -->
-    <div class="mt-3">
-      <label for="author">Author</label>
-      <input
-        type="text"
-        id="author"
-        name="author"
-        [(ngModel)]="model.author"
-        class="form-control"
-      />
-    </div>
-
-    <!-- Is Visible -->
-    <div class="mt-3">
-      <label for="isVisible">Is Visible</label>
-      <input
-        type="checkbox"
-        id="isVisible"
-        name="isVisible"
-        [(ngModel)]="model.isVisible"
-        class="form-check-input"
-      />
-    </div>
-
-    <!-- Category -->
-    <div class="mt-3">
-      <label for="category">Category</label>
-      <select
-        id="category"
-        name="category"
-        [(ngModel)]="model.catagoryId"
-        class="form-control"
-        required
+  <!-- Tabs -->
+  <ul class="nav nav-tabs">
+    <li class="nav-item">
+      <a class="nav-link active" data-bs-toggle="tab" href="#thongTinChung"
+        >Thông Tin Chung</a
       >
-        <option *ngFor="let category of categories" [value]="category.id">
-          {{ category.name }}
-        </option>
-      </select>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" data-bs-toggle="tab" href="#thongTinNangCao"
+        >Thông Tin Nâng Cao</a
+      >
+    </li>
+  </ul>
+
+  <!-- Nội dung từng Tab -->
+  <div class="tab-content mt-3">
+    <!-- Tab Thông Tin Chung -->
+    <div id="thongTinChung" class="tab-pane fade show active">
+      <form #form="ngForm" (ngSubmit)="onFormSubmit()">
+        <div class="mb-3">
+          <label for="tieuDe" class="form-label">Tiêu Đề</label>
+          <input
+            type="text"
+            id="tieuDe"
+            name="tieuDe"
+            [(ngModel)]="model.title"
+            class="form-control"
+            required
+          />
+        </div>
+        <div class="mb-3">
+          <label for="moTaNgan" class="form-label">Mô Tả Ngắn</label>
+          <textarea
+            id="moTaNgan"
+            name="moTaNgan"
+            rows="3"
+            [(ngModel)]="model.shortDescription"
+            class="form-control"
+            required
+          ></textarea>
+        </div>
+        <div class="mb-3">
+          <label for="noiDung" class="form-label">Nội Dung</label>
+          <textarea
+            id="noiDung"
+            name="noiDung"
+            rows="6"
+            [(ngModel)]="model.content"
+            class="form-control"
+            required
+          ></textarea>
+        </div>
+        <div class="mb-3">
+          <label for="hinhAnhDaiDien" class="form-label"
+            >Hình Ảnh Đại Diện</label
+          >
+          <input
+            type="text"
+            id="hinhAnhDaiDien"
+            name="hinhAnhDaiDien"
+            [(ngModel)]="model.featuredImageUrl"
+            class="form-control"
+          />
+        </div>
+      </form>
     </div>
 
-    <!-- Submit Button -->
-    <div class="mt-3">
-      <button class="btn btn-primary" type="submit">Submit</button>
+    <!-- Tab Thông Tin Nâng Cao -->
+    <div id="thongTinNangCao" class="tab-pane fade">
+      <form>
+        <div class="mb-3">
+          <label for="duongDan" class="form-label">Đường Dẫn</label>
+          <input
+            type="text"
+            id="duongDan"
+            name="duongDan"
+            [(ngModel)]="model.urlHandle"
+            class="form-control"
+          />
+        </div>
+        <div class="mb-3">
+          <label for="ngayXuatBan" class="form-label">Ngày Xuất Bản</label>
+          <input
+            type="date"
+            id="ngayXuatBan"
+            name="ngayXuatBan"
+            [(ngModel)]="model.publishedDate"
+            class="form-control"
+          />
+        </div>
+        <div class="mb-3">
+          <label for="tacGia" class="form-label">Tác Giả</label>
+          <input
+            type="text"
+            id="tacGia"
+            name="tacGia"
+            [(ngModel)]="model.author"
+            class="form-control"
+          />
+        </div>
+        <div class="mb-3">
+          <label for="hienThi" class="form-label">Hiển Thị</label>
+          <select
+            id="hienThi"
+            name="hienThi"
+            [(ngModel)]="model.isVisible"
+            class="form-select"
+          >
+            <option [value]="true">Hiển Thị</option>
+            <option [value]="false">Ẩn</option>
+          </select>
+        </div>
+        <div class="mb-3">
+          <label for="danhMuc" class="form-label">Danh Mục</label>
+          <select
+            id="danhMuc"
+            name="danhMuc"
+            [(ngModel)]="model.categoryId"
+            class="form-select"
+            required
+          >
+            <option *ngFor="let category of categories" [value]="category.id">
+              {{ category.name }}
+            </option>
+          </select>
+        </div>
+      </form>
     </div>
-  </form>
+  </div>
+
+  <!-- Nút Submit -->
+  <div class="mt-3">
+    <button
+      (click)="onFormSubmit()"
+      class="btn btn-primary"
+      type="submit"
+      [disabled]="form.invalid"
+    >
+      Gửi
+    </button>
+  </div>
 </div>

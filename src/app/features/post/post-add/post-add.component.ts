@@ -21,7 +21,7 @@ export class PostAddComponent {
     publishedDate: '',
     author: '',
     isVisible: false,
-    categoryId: ''
+    catagoryId: ''
   };
 
   categories: any[] = []; 
