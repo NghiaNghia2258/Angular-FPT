@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { BASE_URL } from '../../../app.config';
-
+import {BlogPost} from '../model/interfacePost';
 @Injectable({
   providedIn: 'root'
 })
@@ -25,5 +25,12 @@ export class PostService {
       };
   
       return of(fakePost); 
+    }
+
+    getAllPost():Observable<BlogPost[]>{
+      return this.http.get<BlogPost[]>(`${BASE_URL}/api/PostCtrl/Get_all_post`);
+    }
+    deletePost(Id:string):Observable<void>{
+      return this.http.delete<void>(`${BASE_URL}/api/PostCtrl/Delete_post?id=${Id}`);
     }
 }
