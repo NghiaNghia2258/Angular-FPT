@@ -3,6 +3,8 @@ import { CategoryListComponent } from './features/category/category-list/categor
 import { CategoryAddComponent } from './features/category/category-add/category-add.component';
 import { AppComponent } from './app.component'
 import { CategoryUpdateComponent } from './features/category/category-update/category-update.component';
+import { PostAddComponent } from './features/post/post-add/post-add.component';
+import { PostUpdateComponent } from './features/post/post-update/post-update.component';
 
 export const routes: Routes = [
     {
@@ -20,5 +22,13 @@ export const routes: Routes = [
     {
         path: 'admin/categories/update/:id',
         component: CategoryUpdateComponent
+    },
+    {
+        path: 'admin/post/add',
+        component: PostAddComponent
+    },
+    {
+        path: 'admin/post/update/:id',
+        component: PostUpdateComponent
     }
 ];
