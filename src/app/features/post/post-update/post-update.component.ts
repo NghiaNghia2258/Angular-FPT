@@ -2,7 +2,8 @@ import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { CategoryService } from '../../category/services/category.service';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { PostService } from '../sevices/post.service';
 
 @Component({
   selector: 'app-post-update',
@@ -22,11 +23,13 @@ export class PostUpdateComponent {
     isVisible: false,
     categoryId: ''
   };
-
+  id: string = "";
   categories: any[] = []; // Danh sách category sẽ được lấy từ API.
 
   constructor(
     private categoryServices: CategoryService,  
+    private postService: PostService,  
+    private route: ActivatedRoute,
     private router: Router  
   ) {}
 
@@ -39,6 +42,15 @@ export class PostUpdateComponent {
         console.error('Lỗi khi lấy danh sách danh mục:', err);
       }
     });
+    this.id = this.route.snapshot.paramMap.get('id') ?? "";
+    this.postService.getPostById(this.id).subscribe(
+      (post) => {
+        this.model = post;
+      },
+      (error) => {
+        console.error('Đã có lỗi xảy ra khi lấy danh mục:', error);
+      }
+    );
   }
 
   onFormSubmit(): void {

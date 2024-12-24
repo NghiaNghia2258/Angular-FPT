@@ -3,6 +3,7 @@ import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { CategoryService } from '../../category/services/category.service';
 import { Router } from '@angular/router';
+import { PostService } from '../sevices/post.service';
 
 @Component({
   selector: 'app-post-add',
@@ -27,6 +28,7 @@ export class PostAddComponent {
 
   constructor(
      private categoryServices: CategoryService,  
+     private postService: PostService,  
      private router: Router  
   ) {}
 
@@ -43,6 +45,13 @@ export class PostAddComponent {
   }
 
   onFormSubmit(): void {
-    console.log('Form submitted:', this.model);
+    this.postService.addPost(this.model).subscribe(
+      () => {
+        console.log('Dữ liệu đã được gửi thành công!');
+      },
+      (error) => {
+        console.error('Đã có lỗi xảy ra:', error);
+      }
+    );
   }
 }
