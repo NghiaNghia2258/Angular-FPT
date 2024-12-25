@@ -6,6 +6,8 @@ import { CategoryUpdateComponent } from './features/category/category-update/cat
 import { PostAddComponent } from './features/post/post-add/post-add.component';
 import { PostUpdateComponent } from './features/post/post-update/post-update.component';
 import {PostLisstComponent} from './features/post/post-lisst/post-lisst.component'
+import { LoginComponent } from './features/auth/login/login.component';
+import { CreateQuizComponent } from './features/quiz/create-quiz/create-quiz.component';
 export const routes: Routes = [
     {
         path:'',
@@ -34,5 +36,14 @@ export const routes: Routes = [
     {
         path: 'admin/post/List',
         component: PostLisstComponent
+    },
+    {
+        path: 'login',
+        component: LoginComponent
+    }
+    ,
+    {
+        path: 'create-quiz',
+        component: CreateQuizComponent
     }
 ];

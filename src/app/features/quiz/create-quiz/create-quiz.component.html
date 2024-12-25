@@ -1,0 +1,15 @@
+<form [formGroup]="quizForm" (ngSubmit)="onSubmit()">
+    <label for="title">Title:</label>
+    <input type="text" id="title" formControlName="title">
+    
+    <label for="description">Description:</label>
+    <textarea id="description" formControlName="description"></textarea>
+  
+    <!-- Add a list of questions using ngFor and provide edit capabilities -->
+    <div formArrayName="questions">
+     
+    </div>
+  
+    <button type="submit" [disabled]="!quizForm.valid">Save Quiz</button>
+  </form>
+  

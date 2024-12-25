@@ -1,0 +1,60 @@
+/* Bố cục tổng thể của form */
+.quiz-form {
+    display: flex;
+    flex-direction: column;
+    max-width: 600px; /* Chiều rộng tối đa cho form */
+    padding: 20px;
+    border: 1px solid #ccc; /* Đường viền nhẹ */
+    border-radius: 8px; /* Bo góc */
+    background-color: #f3f3f3; /* Màu nền nhẹ */
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* Bóng mờ nhẹ */
+    margin: 20px auto; /* Căn giữa form */
+  }
+  
+  /* Styling cho các labels */
+  .quiz-form label {
+    margin-bottom: 5px;
+    font-weight: bold; /* Đặt in đậm cho nhãn */
+  }
+  
+  /* Thiết lập cho các input và textarea */
+  .quiz-form input[type="text"],
+  .quiz-form textarea {
+    padding: 8px;
+    margin-bottom: 15px; /* Khoảng cách giữa các trường */
+    border: 1px solid #ccc;
+    border-radius: 4px; /* Bo góc nhẹ cho các trường nhập */
+  }
+  
+  /* Nâng cao trải nghiệm khi nhập liệu */
+  .quiz-form input[type="text"]:focus,
+  .quiz-form textarea:focus {
+    border-color: #0066cc; /* Màu viền khi trường được chọn */
+    box-shadow: 0 0 8px rgba(0,102,204,0.2); /* Bóng mờ xung quanh trường được focus */
+    outline: none; /* Loại bỏ đường viền mặc định khi focus */
+  }
+  
+  /* Thiết lập cho nút submit */
+  .quiz-form button {
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    background-color: #4CAF50; /* Màu nền cho nút */
+    color: white; /* Màu chữ */
+    cursor: pointer; /* Con trỏ chuột hiển thị như một ngón tay khi di chuột qua */
+    transition: background-color 0.3s ease; /* Hiệu ứng chuyển màu khi hover */
+  }
+  
+  /* Hiệu ứng khi hover hoặc focus vào nút */
+  .quiz-form button:hover,
+  .quiz-form button:focus {
+    background-color: #45a049; /* Đổi màu nền khi hover hoặc focus */
+  }
+  
+  /* Styling cho nút khi bị disable */
+  .quiz-form button:disabled {
+    background-color: #cccccc; /* Màu nền cho nút không hoạt động */
+    color: #666666; /* Màu chữ cho nút không hoạt động */
+    cursor: not-allowed; /* Không cho phép thay đổi con trỏ */
+  }
+  
