@@ -1,4 +1,4 @@
-import { PostService } from './../sevices/post.service';
+import { PostService } from '../sevices/post.service';
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';  
@@ -11,7 +11,7 @@ import { Router } from '@angular/router';
 export class PostLisstComponent implements OnInit {
 
   constructor(
-      private PostService:PostService,
+      private ostService:PostService,
       private router: Router  
   ){}
   post: any[] = [];
