@@ -11,13 +11,13 @@ import { Router } from '@angular/router';
 export class PostLisstComponent implements OnInit {
 
   constructor(
-      private ostService:PostService,
+      private postService:PostService,
       private router: Router  
   ){}
   post: any[] = [];
 
   ngOnInit():void{
-    this.PostService.getAllPost().subscribe({
+    this.postService.getAllPost().subscribe({
       next:(data)=>{
         this.post=data;
       }
@@ -33,7 +33,7 @@ export class PostLisstComponent implements OnInit {
   onDelete(Id: string): void {
     let confirmDelete = confirm("Bạn có chắc chắn muốn xóa?");
     if (confirmDelete) {
-      this.PostService.deletePost(Id).subscribe({
+      this.postService.deletePost(Id).subscribe({
         next: () => {
           alert("Xóa thành công!");
           this.ngOnInit(); 
