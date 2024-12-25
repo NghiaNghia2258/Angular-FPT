@@ -17,7 +17,7 @@ export class PostAddComponent {
     shortDescription: '',
     content: '',
     featuredImageUrl: '',
-    urlHandle: '',
+    urlHandlle: '',
     publishedDate: '',
     author: '',
     isVisible: false,
@@ -48,6 +48,7 @@ export class PostAddComponent {
     this.postService.addPost(this.model).subscribe(
       () => {
         console.log('Dữ liệu đã được gửi thành công!');
+        this.router.navigate([`admin/post/List`]);
       },
       (error) => {
         console.error('Đã có lỗi xảy ra:', error);

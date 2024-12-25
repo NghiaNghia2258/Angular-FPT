@@ -17,7 +17,7 @@ export class PostUpdateComponent {
     shortDescription: '',
     content: '',
     featuredImageUrl: '',
-    urlHandle: '',
+    urlHandlle: '',
     publishedDate: '',
     author: '',
     isVisible: false,
@@ -46,6 +46,7 @@ export class PostUpdateComponent {
     this.postService.getPostById(this.id).subscribe(
       (post) => {
         this.model = post;
+        
       },
       (error) => {
         console.error('Đã có lỗi xảy ra khi lấy danh mục:', error);
@@ -57,10 +58,13 @@ export class PostUpdateComponent {
     this.postService.updatePost(this.model.id,this.model).subscribe(
       (post) => {
         this.model = post;
+        this.router.navigate([`admin/post/List`]);
+
       },
       (error) => {
         console.error('Đã có lỗi xảy ra khi lấy danh mục:', error);
       }
     );
+    
   }
 }

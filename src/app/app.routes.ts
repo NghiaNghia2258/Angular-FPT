@@ -5,7 +5,7 @@ import { AppComponent } from './app.component'
 import { CategoryUpdateComponent } from './features/category/category-update/category-update.component';
 import { PostAddComponent } from './features/post/post-add/post-add.component';
 import { PostUpdateComponent } from './features/post/post-update/post-update.component';
-
+import {PostLisstComponent} from './features/post/post-lisst/post-lisst.component'
 export const routes: Routes = [
     {
         path:'',
@@ -30,5 +30,9 @@ export const routes: Routes = [
     {
         path: 'admin/post/update/:id',
         component: PostUpdateComponent
+    },
+    {
+        path: 'admin/post/List',
+        component: PostLisstComponent
     }
 ];
