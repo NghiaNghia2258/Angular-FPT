@@ -13,24 +13,16 @@ export class PostService {
       return this.http.post<void>(`${BASE_URL}/PostCtrl/Create_post`,model);
     }
     updatePost(id: string, model: any): Observable<void> {
-      return this.http.put<void>(`${BASE_URL}/PostCtrl/update_Post?id=${model.id}`,model);
+      return this.http.put<void>(`${BASE_URL}/PostCtrl/Updte_Post?Id=${model.id}`,model);
     }
     getPostById(id: string): Observable<any> {
-      console.log(`Lấy thông tin danh mục với ID: ${id}`);
-      
-      const fakePost = {
-        id: id,
-        name: 'Danh Mục Fake',
-        urlHandlle: 'danh-muc-fake'
-      };
-  
-      return of(fakePost); 
+      return this.http.get<BlogPost[]>(`${BASE_URL}/PostCtrl/get_post_id?Id=${id}`);
     }
 
     getAllPost():Observable<BlogPost[]>{
-      return this.http.get<BlogPost[]>(`${BASE_URL}/api/PostCtrl/Get_all_post`);
+      return this.http.get<BlogPost[]>(`${BASE_URL}/PostCtrl/Get_all_post`);
     }
     deletePost(Id:string):Observable<void>{
-      return this.http.delete<void>(`${BASE_URL}/api/PostCtrl/Delete_post?id=${Id}`);
+      return this.http.delete<void>(`${BASE_URL}/PostCtrl/Delete_post?id=${Id}`);
     }
 }
