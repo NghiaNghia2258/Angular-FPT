@@ -50,3 +50,21 @@ button:disabled {
   background-color: #ccc; /* Màu nền cho nút không hoạt động */
   cursor: default; /* Không cho phép thay đổi con trỏ */
 }
+.register-link {
+  margin-top: 10px;
+  text-align: center;
+}
+
+.register-link span {
+  margin-right: 5px;
+  color: #555;
+}
+
+.register-link a {
+  color: #007bff;
+  text-decoration: none;
+}
+
+.register-link a:hover {
+  text-decoration: underline;
+}
