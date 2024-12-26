@@ -8,4 +8,4 @@ export const appConfig: ApplicationConfig = {
   providers: [provideZoneChangeDetection({ eventCoalescing: true }), provideRouter(routes), provideHttpClient(),provideClientHydration(withEventReplay())]
 };
 
-export const BASE_URL = 'https://localhost:7011/api';
+export const BASE_URL = 'https://localhost:7170/api';

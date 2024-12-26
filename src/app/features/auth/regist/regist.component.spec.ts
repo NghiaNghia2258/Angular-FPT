@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { PostUpdateComponent } from './post-update.component';
+import { RegistComponent } from './regist.component';
 
-describe('PostUpdateComponent', () => {
-  let component: PostUpdateComponent;
-  let fixture: ComponentFixture<PostUpdateComponent>;
+describe('RegistComponent', () => {
+  let component: RegistComponent;
+  let fixture: ComponentFixture<RegistComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [PostUpdateComponent]
+      imports: [RegistComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(PostUpdateComponent);
+    fixture = TestBed.createComponent(RegistComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

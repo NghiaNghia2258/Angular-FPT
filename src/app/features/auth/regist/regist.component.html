@@ -1,0 +1,11 @@
+<form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+    <input type="text" formControlName="username" placeholder="Username">
+    <input type="password" formControlName="password" placeholder="Password">
+    <input type="repassword" formControlName="repassword" placeholder="rePassword">
+    <div class="register-link">
+        <span>Bạn đã có tài khoản?</span>
+        <a routerLink="/login" (click)="login()">Đăng nhập ngay</a>
+      </div>
+    <button type="submit" [disabled]="!loginForm.valid">Login</button>
+  </form>
+  
