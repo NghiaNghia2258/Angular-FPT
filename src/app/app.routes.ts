@@ -3,6 +3,8 @@ import { AppComponent } from './app.component'
 import { LoginComponent } from './features/auth/login/login.component';
 import { CreateQuizComponent } from './features/quiz/create-quiz/create-quiz.component';
 import { RegistComponent } from './features/auth/regist/regist.component';
+import { authGuard } from './features/guard/auth.guard';
+
 export const routes: Routes = [
     {
         path:'',
@@ -20,6 +22,7 @@ export const routes: Routes = [
     ,
     {
         path: 'create-quiz',
-        component: CreateQuizComponent
+        component: CreateQuizComponent,
+        canActivate: [authGuard]
     }
 ];

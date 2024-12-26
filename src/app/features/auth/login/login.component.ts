@@ -21,6 +21,8 @@ export class LoginComponent {
   onSubmit() {
     this.authService.login(this.loginForm.value).subscribe({
       next: (res) => {
+        debugger;
+        localStorage.setItem('token', res.data.accessToken);
         alert('login successful');
       },
       error: (err) => {

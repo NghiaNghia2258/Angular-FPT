@@ -10,8 +10,8 @@ export class AuthService {
 
   constructor(private http:HttpClient) { }
 
-  login(model:any):Observable<void>{
-    return this.http.post<void>(`${BASE_URL}/Auth/sign-in`,model);
+  login(model:any):Observable<any>{
+    return this.http.post<any>(`${BASE_URL}/Auth/sign-in`,model);
   }
   regist(model:any):Observable<void>{
     model.roleGroupId = 1;
