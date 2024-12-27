@@ -19,9 +19,9 @@ export class LoginComponent {
     this.router.navigate(['/regist']);
   }
   onSubmit() {
+    cons.log(this.loginForm.value);
     this.authService.login(this.loginForm.value).subscribe({
       next: (res) => {
-        debugger;
         localStorage.setItem('token', res.data.accessToken);
         alert('login successful');
       },
