@@ -1,9 +1,9 @@
 import { inject } from '@angular/core';
 import { CanActivateFn, Router  } from '@angular/router';
+import { CookieUtils } from '../../utils/cookie-utils';
 
 export const authGuard: CanActivateFn = (route, state) => {
-  debugger;
-  const isLoggedIn = localStorage.getItem('token'); 
+  const isLoggedIn = CookieUtils.getCookie("token");
   const router = inject(Router); 
 
   if (!isLoggedIn) {

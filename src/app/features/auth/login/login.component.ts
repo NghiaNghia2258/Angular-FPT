@@ -27,6 +27,7 @@ export class LoginComponent {
           secure: true, 
           sameSite: 'Strict' 
         });
+        this.router.navigate(['/quiz-list']);
       },
       error: (err) => {
         alert('Tài khoản hoặc mật khẩu không đúng');
