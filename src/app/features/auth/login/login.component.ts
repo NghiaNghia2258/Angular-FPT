@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { AuthService } from '../services/auth.service';
 import { Router } from '@angular/router';
+import { CookieUtils } from '../../../utils/cookie-utils';
 
 @Component({
   selector: 'app-login',
@@ -21,9 +22,11 @@ export class LoginComponent {
   onSubmit() {
     this.authService.login(this.loginForm.value).subscribe({
       next: (res) => {
-        debugger;
-        localStorage.setItem('token', res.data.accessToken);
-        alert('login successful');
+        CookieUtils.setCookie('token', res.data.accessToken, { 
+          expires: 7, 
+          secure: true, 
+          sameSite: 'Strict' 
+        });
       },
       error: (err) => {
         alert('Tài khoản hoặc mật khẩu không đúng');
