@@ -1,11 +1,12 @@
 import { Component, inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { ButtonModule } from 'primeng/button';
+import { NavbarComponent } from "../../core/navbar/navbar.component";
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [ButtonModule],
+  imports: [ButtonModule, NavbarComponent],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css',
 })
