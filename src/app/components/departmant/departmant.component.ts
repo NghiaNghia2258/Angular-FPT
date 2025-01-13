@@ -102,7 +102,7 @@ export class DepartmantComponent implements OnInit{
     this.confirmationService.confirm({
       message: 'Are you sure you want to delete this department?',
       accept: () => {
-        this.departmentService.deleteDepartment(department.FacultyID).subscribe(
+        this.departmentService.deleteDepartment(department.id).subscribe(
           () => {
             this.messageService.add({severity:'success', summary: 'Success', detail: 'Department deleted'});
             this.loadDepartments();

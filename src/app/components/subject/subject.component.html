@@ -18,21 +18,15 @@
                 <tr>
                   <th>Mã môn học</th>
                   <th>Tên môn học</th>
-                  <th>Số tín chỉ</th>
-                  <th>Học kỳ</th>
                   <th>Tên chuyên ngành</th>
-                  <th>Mô tả</th>
                   <th>Thao tác</th>
                 </tr>
               </ng-template>
               <ng-template pTemplate="body" let-subject>
                 <tr>
-                  <td>{{subject.SubjectId}}</td>
-                  <td>{{subject.SubjectName}}</td>
-                  <td>{{subject.Credits}}</td>
-                  <td>{{subject.Semester}}</td>
-                  <td>{{subject.MajorId}}</td>
-                  <td>{{subject.Description}}</td>
+                  <td>{{subject.id}}</td>
+                  <td>{{subject.name}}</td>
+                  <td>{{subject.code}}</td>
                   <td >
                     <button pButton  class="p-button  p-mr-2" (click)="edit(subject)">Sửa</button>
                     <button pButton  class="p-button " (click)="delete(subject)">Xóa</button>
@@ -46,23 +40,23 @@
               <ng-template pTemplate="content">
                 <div class="p-field">
                   <label for="SubjectId">Mã Môn học</label>
-                  <input id="SubjectId" pInputText type="text" [(ngModel)]="subject.SubjectId" required autofocus />
+                  <input id="SubjectId" pInputText type="text" [(ngModel)]="subject.id" required autofocus />
                 </div>
                 <div class="p-field">
                   <label for="SubjectName">Tên môn học</label>
-                  <input id="SubjectName" pInputText type="text" [(ngModel)]="subject.SubjectName" required />
+                  <input id="SubjectName" pInputText type="text" [(ngModel)]="subject.name" required />
                 </div>
                 <div class="p-field">
                   <label for="Credits">Số tín chỉ</label>
-                  <input id="Credits" pInputText type="number" [(ngModel)]="subject.Credits" required />
+                  <input id="Credits" pInputText type="number" [(ngModel)]="subject.code" required />
                 </div>
                 <div class="p-field">
                   <label for="Semester">Học kỳ</label>
-                  <input id="Semester" pInputText type="text" [(ngModel)]="subject.Semester" required />
+                  <input id="Semester" pInputText type="text" [(ngModel)]="subject.code" required />
                 </div>
                 <div class="p-field">
                     <label for="MajorId">Chuyên ngành</label>
-                    <select id="MajorId" [(ngModel)]="subject.MajorId">
+                    <select id="MajorId" [(ngModel)]="subject.code">
                         <option>Chọn chuyên ngành</option>
                         <option value="CNPM">Công nghệ phần mền</option>
                         <option value="KTPM">Kiểm thử phần mền</option>
@@ -70,7 +64,7 @@
                   </div>
                 <div class="p-field">
                     <label for="Description">Mô tả</label>
-                    <input id="Description" pInputText type="text" [(ngModel)]="subject.Description" required />
+                    <input id="Description" pInputText type="text" [(ngModel)]="subject.code" required />
                   </div>
               </ng-template>
               <ng-template pTemplate="footer">

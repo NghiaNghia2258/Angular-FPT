@@ -19,16 +19,14 @@
                   <th>Mã Khoa</th>
                   <th>Tên Khoa</th>
                   <th>Viết tắt</th>
-                  <th>Mô tả</th>
                   <th>Thao tác</th>
                 </tr>
               </ng-template>
               <ng-template pTemplate="body" let-department>
                 <tr>
-                  <td>{{department.FacultyID}}</td>
-                  <td>{{department.FacultyName}}</td>
-                  <td>{{department.Abbreviation}}</td>
-                  <td>{{department.Description}}</td>
+                  <td>{{department.id}}</td>
+                  <td>{{department.name}}</td>
+                  <td>{{department.code}}</td>
                   <td>
                     <button pButton  class="p-button  p-mr-2" (click)="edit(department)">Sửa</button>
                     <button pButton  class="p-button " (click)="delete(department)">Xóa</button>
@@ -43,19 +41,19 @@
               <ng-template pTemplate="content">
                 <div class="p-field">
                   <label for="FacultyID">Mã Khoa</label>
-                  <input id="FacultyID" pInputText type="text" [(ngModel)]="department.FacultyID" required autofocus />
+                  <input id="FacultyID" pInputText type="text" [(ngModel)]="department.id" required autofocus />
                 </div>
                 <div class="p-field">
                   <label for="FacultyName">Tên Khoa</label>
-                  <input id="FacultyName" pInputText type="text" [(ngModel)]="department.FacultyName" required />
+                  <input id="FacultyName" pInputText type="text" [(ngModel)]="department.name" required />
                 </div>
                 <div class="p-field">
                   <label for="Abbreviation">Viết tắt</label>
-                  <input id="Abbreviation" pInputText type="text" [(ngModel)]="department.Abbreviation" required />
+                  <input id="Abbreviation" pInputText type="text" [(ngModel)]="department.code" required />
                 </div>
                 <div class="p-field">
                   <label for="Description">Mô tả</label>
-                  <input id="Description" pInputText type="text" [(ngModel)]="department.Description" required />
+                  <input id="Description" pInputText type="text" [(ngModel)]="department.code" required />
                 </div>
               </ng-template>
               <ng-template pTemplate="footer">

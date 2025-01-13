@@ -1,0 +1,128 @@
+<div style="display: flex">
+    <app-navbar style="flex: 1"></app-navbar>
+    <div style="flex: 5">
+      <app-header></app-header>
+      <div class="card">
+        <h1 class="title">Thêm giảng viên</h1>
+        <!-- Container for input fields -->
+        <div
+          class="form-container"
+          style="
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            align-items: center;
+          "
+        >
+          <!-- Input fields -->
+          <div class="p-field">
+            <label for="Department">Khoa</label>
+            <p-dropdown
+            id="Department"
+            [options]="departments"
+            [(ngModel)]="teacher.IdKhoa"
+            placeholder="Chọn khoa"
+            optionLabel="name"
+            optionValue="id" 
+            [style]="{'width': '100%', 'max-width': '500px', 'margin-bottom': '10px'}"
+          ></p-dropdown>
+          </div>
+          <div class="p-field">
+            <label for="Code">Mã giảng viên</label>
+            <input
+              id="Code"
+              pInputText
+              type="text"
+              [(ngModel)]="teacher.Code"
+              required
+              autofocus
+              style="width: 100%;"
+            />
+          </div>
+          <div class="p-field">
+            <label for="FullName">Họ và tên</label>
+            <input
+              id="FullName"
+              pInputText
+              type="text"
+              [(ngModel)]="teacher.FullName"
+              required
+              style="width: 100%;"
+            />
+          </div>
+          <div class="p-field">
+            <label for="Email">Email</label>
+            <input
+              id="Email"
+              pInputText
+              type="email"
+              [(ngModel)]="teacher.Email"
+              required
+              style="width: 100%;"
+            />
+          </div>
+          <div class="p-field">
+            <label for="Phone">SDT</label>
+            <input
+              id="Phone"
+              pInputText
+              type="text"
+              [(ngModel)]="teacher.Phone"
+              required
+              style="width: 100%;"
+            />
+          </div>
+          <div class="p-field">
+            <label for="Address">Địa chỉ</label>
+            <input
+              id="Address"
+              pInputText
+              type="text"
+              [(ngModel)]="teacher.Code"
+              required
+              style="width: 100%;"
+            />
+          </div>
+        </div>
+
+
+        <div class="subject-list" style="margin-top: 20px;">
+            <h2>Danh sách môn học</h2>
+            <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px;">
+              <div *ngFor="let subject of subjects" class="p-field-checkbox">
+                <p-checkbox 
+                  [name]="subject.id" 
+                  [label]="subject.name"
+                  [(ngModel)]="selectedSubjects"
+                  [value]="subject.id" 
+                  [inputId]="'subject_' + subject.id">
+                </p-checkbox>
+              </div>
+            </div>
+          </div>
+
+        <div
+          class="button-container"
+          style="margin-top: 20px; display: flex; justify-content: flex-end; gap: 10px;"
+        >
+          <button
+            pButton
+            pRipple
+            label="Hủy"
+            icon="pi pi-times"
+            class="p-button-text"
+            (click)="managementTeacher()"
+          ></button>
+          <button
+            pButton
+            pRipple
+            label="Lưu"
+            icon="pi pi-check"
+            class="p-button-text"
+            (click)="save()"
+          ></button>
+        </div>
+      </div>
+    </div>
+  </div>
+  

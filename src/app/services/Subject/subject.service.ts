@@ -1,38 +1,50 @@
-import { Subject } from './../../interfaces/Subject';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable ,of} from 'rxjs';
+import { map, Observable, of } from 'rxjs';
+import { Subject } from './../../interfaces/Subject';
+import { URL } from '../../shared/url/url_services';
+
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class SubjectService {
+  constructor(private http: HttpClient) {}
 
-  private Subjects:Subject[]=[
-    {SubjectId:'TRR',SubjectName:'Toán rời rạc', Credits:2,Semester:'Kọc kỳ 1', MajorId:'CNPM',Description:'Học về toán rời rạc'}
-  ]
-  constructor(private http:HttpClient) { }
-
-  getAllSubject():Observable<Subject[]>{
-    return of(this.Subjects);
+  // Lấy danh sách môn học
+  getAllSubject(): Observable<Subject[]> {
+    return this.http.get<{data:Subject[]}>(URL.Subject(1,10)).pipe(
+      map((response)=>response.data)
+    ); 
   }
 
-  addSubject():Observable<string>{
+  // Thêm môn học mới
+  addSubject(subject: Subject): Observable<string> {
     try {
-      return of('Đã thêm thành công!');
+
+      return of('Đã thêm môn học thành công!');
     } catch {
-      return of('Có lỗi xảy ra!');
+      return of('Có lỗi xảy ra khi thêm môn học!');
     }
   }
 
-  updateSubject():Observable<string>{
-    try{
-      return of('Cập nhập thành công !');
-    }
-    catch{
-      return of('cập nhập thất bại!');
+  // Cập nhật thông tin môn học
+  updateSubject(subjectId: string, updatedSubject: Subject): Observable<string> {
+    try {
+     
+      
+      return of('Không tìm thấy môn học để cập nhật!');
+    } catch {
+      return of('Có lỗi xảy ra khi cập nhật môn học!');
     }
   }
-  deleteSubject(id: string): Observable<void> {
-    return of(void 0);
+
+  // Xóa môn học
+  deleteSubject(subjectId:number): Observable<string> {
+    try {
+      
+      return of('Không tìm thấy môn học để xóa!');
+    } catch {
+      return of('Có lỗi xảy ra khi xóa môn học!');
+    }
   }
 }

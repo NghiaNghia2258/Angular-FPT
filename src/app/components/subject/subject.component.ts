@@ -101,7 +101,7 @@ export class SubjectComponent implements OnInit{
       this.confirmationService.confirm({
         message: 'Are you sure you want to delete this department?',
         accept: () => {
-          this.subjectService.deleteSubject(subject.SubjectId).subscribe(
+          this.subjectService.deleteSubject(subject.id).subscribe(
             () => {
               this.messageService.add({severity:'success', summary: 'Success', detail: 'Department deleted'});
               this.loadSubject();

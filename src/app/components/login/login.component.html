@@ -11,8 +11,7 @@
           id="email"
           name="email"
           #email="ngModel"
-          required
-          pattern="[a-z0-9\._%\+\-]+@[a-z0-9\.\-]+\.[a-z]{2,}$"
+          
         />
         @if(email.invalid && (email.dirty || email.touched)){
         <small class="block p-error">

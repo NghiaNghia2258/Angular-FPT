@@ -111,8 +111,8 @@
           class="mr-2"
           shape="circle"
         />
-        <span class="inline-flex flex-column">
-          <span class="font-bold">Amy Elsner</span>
+        <span class="inline-flex flex-column" *ngIf="user!==undefined">
+          <span class="font-bold">{{user.email}}</span>
           <span class="text-sm">Admin</span>
         </span>
       </button>

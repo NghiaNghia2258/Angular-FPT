@@ -1,3 +1,5 @@
+import { User } from './../../interfaces/auth';
+import { AuthService } from './../../services/auth.service';
 import { Component, OnInit } from '@angular/core';
 import { MenuItem } from 'primeng/api';
 import { MenuModule } from 'primeng/menu';
@@ -15,11 +17,20 @@ import { Router } from '@angular/router';
   styleUrl: './navbar.component.css'
 })
 export class NavbarComponent implements OnInit {
+  user?: User;
   items: MenuItem[] | undefined;
 
-  constructor(private router: Router) {}
+  constructor(private router: Router,
+    private authService:AuthService
+  ) {}
 
   ngOnInit() {
+    this.authService.user().subscribe({
+      next:Response=>{
+        this.user=Response
+      }
+    })
+    this.user=this.authService.getUser();
     this.items = [
       {
         separator: true
@@ -88,7 +99,6 @@ export class NavbarComponent implements OnInit {
   }
 
   logout() {
-    console.log('Logging out...');
-    this.router.navigate(['/login']);
+    this.authService.logout();
   }
 }
