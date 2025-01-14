@@ -3,7 +3,6 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Login, RegisterPostData, User } from '../interfaces/auth';
 import { BehaviorSubject, map, Observable } from 'rxjs';
-import { CookieService } from 'ngx-cookie-service';
 import {  Router } from '@angular/router';
 
 @Injectable({
@@ -11,10 +10,7 @@ import {  Router } from '@angular/router';
 })
 export class AuthService {
 
-  constructor(private http: HttpClient,
-    private cookieService: CookieService,
-    private router:Router
-  ) {}
+  constructor(private http: HttpClient) {}
   $user = new BehaviorSubject<User | undefined>(undefined);
 
   registerUser(postData: RegisterPostData) {
@@ -54,9 +50,6 @@ export class AuthService {
   }
 
   logout(): void {
-    localStorage.clear();
-    this.cookieService.delete("Authentication", "/");
-    this.router.navigate(['/login']);
-    this.$user.next(undefined);
+    
   }
 }
