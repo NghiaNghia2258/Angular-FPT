@@ -18,7 +18,7 @@ export class DepartmentService {
 
  
   getDepartments(): Observable<Faculty[]> {
-    return this.http.get<{ data: Faculty[] }>(URL.Faculty).pipe(
+    return this.http.get<{ data: Faculty[] }>(URL.Faculty.GETALL).pipe(
       map((response) => response.data) 
     );
   }

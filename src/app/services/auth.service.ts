@@ -16,7 +16,14 @@ export class AuthService {
   registerUser(postData: RegisterPostData) {
     return this.http.post(`${env.baseUrl}/users`, postData);
   }
-
+  signIn(): Observable<Login[]> {
+    const data={
+       
+    }
+    return this.http.post<{data:Login[]}>(
+      `${env.baseUrl}/Auth/sign-in`,data
+    ).pipe(map((reponse)=>reponse.data));
+  }
   getUserDetails(email: string, password: string): Observable<Login[]> {
     const data={
         username: email,
