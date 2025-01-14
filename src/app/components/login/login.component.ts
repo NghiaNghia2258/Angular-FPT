@@ -33,10 +33,10 @@ export class LoginComponent {
   private messageService = inject(MessageService);
   onLogin() {
     const { email, password } = this.login;
-    this.authService.getUserDetails(email, password).subscribe({
+    this.authService.signIn(email, password).subscribe({
       next: (response) => {
-        if (response.length >= 1) {
-          sessionStorage.setItem('email', email);
+        if (response.isSucceeded) {
+          localStorage.setItem("accessToken", response.data.accessToken);
           this.router.navigate(['home']);
         } else {
           this.messageService.add({
