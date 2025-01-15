@@ -1,5 +1,5 @@
 export interface Teacher{
-    Code:string,
+    Code:number,
     FullName:string,
     Email:string,
     Phone:string,

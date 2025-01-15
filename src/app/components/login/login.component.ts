@@ -38,8 +38,10 @@ export class LoginComponent {
     debugger;
     this.authService.getUserDetails(email, password).subscribe({
       next: (response) => {
-            this.cookieService.set("Authentication",
-            `Bearer ${response}`, undefined, '/', undefined, true, 'Strict');
+        const studentId = 'SV001'; 
+        localStorage.setItem('studentId', studentId);
+            // this.cookieService.set("Authentication",
+            // `Bearer ${response}`, undefined, '/', undefined, true, 'Strict');
           this.router.navigate(['home']);
       },
       error: () => {

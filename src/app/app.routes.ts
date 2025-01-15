@@ -8,6 +8,8 @@ import { StudentComponent } from './components/student/student.component';
 import { TeacherComponent } from './components/Management_Teacher/teacher/teacher.component';
 import { SubjectComponent } from './components/subject/subject.component';
 import { AddTeacherComponent } from './components/Management_Teacher/add-teacher/add-teacher.component';
+import { LearningoutcomesComponent } from './components/learningoutcomes/learningoutcomes.component';
+import { StudentGradesComponent } from './components/student-grades/student-grades.component';
 export const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
@@ -17,9 +19,10 @@ export const routes: Routes = [
   {
     path: 'teacheraaaa',
     component: TeacherComponent,
-    canActivate: [authGuard],
   },
   { path: 'subject', component: SubjectComponent },
   { path: 'formaddTeacher', component: AddTeacherComponent },
+  {path:'Learningoutcomesmanagement',component:LearningoutcomesComponent},
+  {path:'studentGrade',component:StudentGradesComponent},
   { path: '', redirectTo: 'login', pathMatch: 'full' },
 ];

@@ -85,32 +85,7 @@ export class TeacherComponent implements OnInit{
     this.displayDialog = true;
   }
 
-  save() {
-    // if (this.isNewStudent) {
-    //   this.departmentService.addDepartment(this.student).subscribe(
-    //     () => {
-    //       this.messageService.add({severity:'success', summary: 'Success', detail: 'Department added'});
-    //       this.loadDepartments();
-    //     },
-    //     (error) => {
-    //       console.error('Error adding department', error);
-    //       this.messageService.add({severity:'error', summary: 'Error', detail: 'Unable to add department'});
-    //     }
-    //   );
-    // } else {
-    //   this.departmentService.updateDepartment(this.department).subscribe(
-    //     () => {
-    //       this.messageService.add({severity:'success', summary: 'Success', detail: 'Department updated'});
-    //       this.loadDepartments();
-    //     },
-    //     (error) => {
-    //       console.error('Error updating department', error);
-    //       this.messageService.add({severity:'error', summary: 'Error', detail: 'Unable to update department'});
-    //     }
-    //   );
-    // }
-    this.displayDialog = false;
-  }
+ 
 
   edit(teacher: Teacher) {
     this.teacher = {...teacher};
@@ -120,7 +95,7 @@ export class TeacherComponent implements OnInit{
 
   delete(teacher: Teacher) {
     this.confirmationService.confirm({
-      message: 'Are you sure you want to delete this department?',
+      message: 'Are you sure you want to delete this teacher?',
       accept: () => {
         this.teacherService.deleteTeacher(teacher.Code).subscribe(
           () => {

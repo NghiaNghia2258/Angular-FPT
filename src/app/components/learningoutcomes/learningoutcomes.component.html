@@ -1,0 +1,135 @@
+<div style="display: flex">
+    <app-navbar style="flex: 1"></app-navbar>
+    <div style="flex: 5">
+      <app-header></app-header>
+      <div class="card">
+        <h1 class="title">Quản lý điểm sinh viên</h1>
+        <!-- Form chọn lớp học và môn học -->
+        <div class="form-container" style="display: flex; gap: 20px; margin-bottom: 20px;">
+          <div class="p-field" style="flex: 1;">
+            <label for="Class">Chọn lớp học</label>
+            <p-dropdown
+              id="Class"
+              [options]="classes"
+              [(ngModel)]="selectedClass"
+              placeholder="Chọn lớp học"
+              optionLabel="name"
+              optionValue="id"
+              [style]="{ width: '100%' }"
+            ></p-dropdown>
+          </div>
+          <div class="p-field" style="flex: 1;">
+            <label for="Subject">Chọn môn học</label>
+            <p-dropdown
+              id="Subject"
+              [options]="subjects"
+              [(ngModel)]="selectedSubject"
+              placeholder="Chọn môn học"
+              optionLabel="name"
+              optionValue="id"
+              [style]="{ width: '100%' }"
+            ></p-dropdown>
+          </div>
+          <div style="display: flex; align-items: flex-end;">
+            <button
+              pButton
+              pRipple
+              label="Tìm kiếm"
+              icon="pi pi-search"
+              class="p-button"
+              (click)="searchStudents()"
+            ></button>
+          </div>
+        </div>
+  
+        <!-- Bảng danh sách sinh viên -->
+        <div *ngIf="students && students.length > 0">
+          <p-table [value]="students" [responsiveLayout]="'scroll'" styleClass="p-datatable-gridlines">
+            <ng-template pTemplate="header">
+              <tr>
+                <th>Mã sinh viên</th>
+                <th>Tên sinh viên</th>
+                <th>Tên lớp</th>
+                <th>Điểm chuyên cần</th>
+                <th>Điểm bài tập</th>
+                <th>Điểm thi</th>
+                <th>Điểm thực hành</th>
+              </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-student>
+              <tr>
+                <td>{{ student.id }}</td>
+                <td>{{ student.name }}</td>
+                <td>{{ student.className }}</td>
+                <td>
+                  <input
+                    type="number"
+                    [(ngModel)]="student.AttendanceGrade"
+                    pInputText
+                    min="0"
+                    max="10"
+                    style="width: 100%;"
+                  />
+                </td>
+                <td>
+                  <input
+                    type="number"
+                    [(ngModel)]="student.HomeworkGrade"
+                    pInputText
+                    min="0"
+                    max="10"
+                    style="width: 100%;"
+                  />
+                </td>
+                <td>
+                  <input
+                    type="number"
+                    [(ngModel)]="student.ExamGrade"
+                    pInputText
+                    min="0"
+                    max="10"
+                    style="width: 100%;"
+                  />
+                </td>
+                <td>
+                  <input
+                    type="number"
+                    [(ngModel)]="student.PracticalGrade"
+                    pInputText
+                    min="0"
+                    max="10"
+                    style="width: 100%;"
+                  />
+                </td>
+              </tr>
+            </ng-template>
+          </p-table>
+        </div>
+        <!-- Thông báo khi không có dữ liệu -->
+        <div *ngIf="students && students.length === 0" class="p-text-center" style="margin-top: 20px;">
+          Không tìm thấy sinh viên nào.
+        </div>
+  
+        <!-- Nút lưu -->
+        <div class="button-container" style="margin-top: 20px; display: flex; justify-content: flex-end; gap: 10px;">
+          <button
+            pButton
+            pRipple
+            label="Hủy"
+            icon="pi pi-times"
+            class="p-button-text"
+            (click)="cancel()"
+          ></button>
+          <button
+            pButton
+            pRipple
+            label="Lưu"
+            icon="pi pi-check"
+            class="p-button"
+            (click)="saveGrades()"
+          ></button>
+        </div>
+      </div>
+    </div>
+  </div>
+  

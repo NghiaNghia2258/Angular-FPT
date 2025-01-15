@@ -10,7 +10,7 @@ import { URL } from '../../shared/url/url_services';
 export class TeacherService {
   private teachers: Teacher[] = [
     {
-      Code: '10621306',
+      Code: 10621306,
       FullName: 'Trịnh Thị Nhị',
       Email: 'trinhthinhi@gmail.com',
       Phone: '0369809203',
@@ -31,7 +31,7 @@ export class TeacherService {
   }
 
   // Cập nhật thông tin giáo viên
-  updateTeacher(code: string, updatedTeacher: Teacher): Observable<string> {
+  updateTeacher(code: number, updatedTeacher: Teacher): Observable<string> {
     try {
       const index = this.teachers.findIndex((t) => t.Code === code);
       if (index !== -1) {
@@ -45,14 +45,11 @@ export class TeacherService {
   }
 
   // Xóa giáo viên
-  deleteTeacher(code: string): Observable<string> {
+  deleteTeacher(code: number): Observable<string> {
     try {
-      const index = this.teachers.findIndex((t) => t.Code === code);
-      if (index !== -1) {
-        this.teachers.splice(index, 1);
+        this.http.delete<string>(URL.TEACHER.DELETE(code));
         return of('Đã xóa thành công!');
-      }
-      return of('Không tìm thấy giáo viên để xóa!');
+      
     } catch {
       return of('Có lỗi xảy ra khi xóa!');
     }
