@@ -1,66 +1,113 @@
 <div style="display: flex">
-    <app-navbar style="flex: 1"></app-navbar>
-    <div style="flex: 5">
-        <app-header></app-header>
-        <div class="card">
-        
-            <h1 class="titel">Quản lý sinh viên</h1>
-            
-            <p-toast></p-toast>
-            <p-confirmDialog></p-confirmDialog>
-            <div class="container d-flex justify-content-between " style="width: 100%;">
-                <input pInputText type="text" placeholder="Nhập tên sinh viên" style="margin-right: 50px;" />
-                <button pButton type="button" label="Thêm sinh viên" icon="pi pi-plus" class="p-mt-3" (click)="showDialogToAdd()"></button>
-            </div>
+  <app-navbar style="flex: 1"></app-navbar>
+  <div style="flex: 5">
+      <app-header></app-header>
+      <div class="card">
+          <h1 class="title">Quản lý sinh viên</h1>
           
-            <p-table [value]="students" [paginator]="true" [rows]="10" [responsive]="true">
+          <p-toast></p-toast>
+          <p-confirmDialog></p-confirmDialog>
+          
+          <div class="container d-flex justify-content-between mb-4" style="width: 100%;">
+              <input pInputText type="text" placeholder="Nhập tên sinh viên" style="margin-right: 50px;" />
+              <button pButton type="button" label="Thêm sinh viên" icon="pi pi-plus" class="p-mt-3" (click)="showDialogToAdd()"></button>
+          </div>
+          
+          <p-table [value]="students" [paginator]="true" [rows]="10" [responsive]="true">
               <ng-template pTemplate="header">
-                <tr>
-                  <th>Mã sinh viên</th>
-                  <th>Tên sinh viên</th>
-                  <th>Năm nhập học</th>
-                  <th>Trạng thái</th>
-                  <th>Thao tác</th>
-                </tr>
+                  <tr>
+                      <th>Mã sinh viên</th>
+                      <th>Họ và tên</th>
+                      <th>Quốc gia</th>
+                      <th>Thành phố</th>
+                      <th>Giới tính</th>
+                      <th>Thao tác</th>
+                  </tr>
               </ng-template>
               <ng-template pTemplate="body" let-student>
-                <tr>
-                  <td>{{student.Code}}</td>
-                  <td>{{student.FullName}}</td>
-                  <td>{{student.EnrollmentYear}}</td>
-                  <td>{{student.Status}}</td>
-                  <td>
-                    <button pButton  class="p-button  p-mr-2" (click)="edit(student)">Sửa</button>
-                    <button pButton  class="p-button " (click)="delete(student)">Xóa</button>
-                  </td>
-                </tr>
+                  <tr>
+                      <td>{{student.identityCardNumber}}</td>
+                      <td>{{student.fullName}}</td>
+                      <td>{{student.country}}</td>
+                      <td>{{student.city}}</td>
+                      <td>{{student.gender}}</td>
+                      <td>
+                          <button pButton class="p-button p-mr-2" (click)="edit(student)">Sửa</button>
+                          <button pButton class="p-button" (click)="delete(student)">Xóa</button>
+                      </td>
+                  </tr>
               </ng-template>
-            </p-table>
-           
-            <p-dialog [(visible)]="displayDialog" [style]="{width: '450px'}" header="Thông tin sinh viên" [modal]="true" styleClass="p-fluid">
+          </p-table>
+          
+          <p-dialog [(visible)]="displayDialog" [style]="{width: '800px'}" header="Thông tin sinh viên" [modal]="true" styleClass="p-fluid">
               <ng-template pTemplate="content">
-                <div class="p-field">
-                  <label for="Code">Mã sinh viên</label>
-                  <input id="Code" pInputText type="text" [(ngModel)]="student.Code" required autofocus />
-                </div>
-                <div class="p-field">
-                  <label for="FullName">Họ và tên</label>
-                  <input id="FullName" pInputText type="text" [(ngModel)]="student.FullName" required />
-                </div>
-                <div class="p-field">
-                  <label for="EnrollmentYear">Năm nhập học</label>
-                  <input id="EnrollmentYear" pInputText type="number" [(ngModel)]="student.EnrollmentYear" required />
-                </div>
-                <div class="p-field">
-                  <label for="Status">Mô tả</label>
-                  <input id="Status" pInputText type="text" [(ngModel)]="student.Status" required />
-                </div>
+                  <div class="p-grid p-fluid">
+                      <!-- Row 1 -->
+                      <div class="p-col-4">
+                          <div class="p-field">
+                              <label for="identityCardNumber">Mã sinh viên</label>
+                              <input id="identityCardNumber" pInputText type="text" [(ngModel)]="student.identityCardNumber" required />
+                          </div>
+                      </div>
+                      <div class="p-col-4">
+                          <div class="p-field">
+                              <label for="fullName">Họ và tên</label>
+                              <input id="fullName" pInputText type="text" [(ngModel)]="student.fullName" required />
+                          </div>
+                      </div>
+                      <div class="p-col-4">
+                          <div class="p-field">
+                              <label for="gender">Giới tính</label>
+                              <input id="gender" pInputText type="text" [(ngModel)]="student.gender" required />
+                          </div>
+                      </div>
+                      
+                      <!-- Row 2 -->
+                      <div class="p-col-4">
+                          <div class="p-field">
+                              <label for="country">Quốc gia</label>
+                              <input id="country" pInputText type="text" [(ngModel)]="student.country" required />
+                          </div>
+                      </div>
+                      <div class="p-col-4">
+                          <div class="p-field">
+                              <label for="city">Thành phố</label>
+                              <input id="city" pInputText type="text" [(ngModel)]="student.city" required />
+                          </div>
+                      </div>
+                      <div class="p-col-4">
+                          <div class="p-field">
+                              <label for="district">Quận/Huyện</label>
+                              <input id="district" pInputText type="text" [(ngModel)]="student.district" required />
+                          </div>
+                      </div>
+                      
+                      <!-- Row 3 -->
+                      <div class="p-col-4">
+                          <div class="p-field">
+                              <label for="ward">Phường/Xã</label>
+                              <input id="ward" pInputText type="text" [(ngModel)]="student.ward" required />
+                          </div>
+                      </div>
+                      <div class="p-col-4">
+                          <div class="p-field">
+                              <label for="dateOfBirth">Ngày sinh</label>
+                              <input id="dateOfBirth" pInputText type="date" [(ngModel)]="student.dateOfBirth" required />
+                          </div>
+                      </div>
+                      <div class="p-col-4">
+                          <div class="p-field">
+                              <label for="majorCode">Mã ngành</label>
+                              <input id="majorCode" pInputText type="text" [(ngModel)]="student.majorCode" required />
+                          </div>
+                      </div>
+                  </div>
               </ng-template>
               <ng-template pTemplate="footer">
-                <button pButton pRipple label="Hủy" icon="pi pi-times" class="p-button-text" (click)="displayDialog=false"></button>
-                <button pButton pRipple label="Lưu" icon="pi pi-check" class="p-button-text" (click)="save()"></button>
+                  <button pButton pRipple label="Hủy" icon="pi pi-times" class="p-button-text" (click)="displayDialog=false"></button>
+                  <button pButton pRipple label="Lưu" icon="pi pi-check" class="p-button-text" (click)="save()"></button>
               </ng-template>
-            </p-dialog>
-          </div>
-    </div>
+          </p-dialog>
+      </div>
   </div>
+</div>
