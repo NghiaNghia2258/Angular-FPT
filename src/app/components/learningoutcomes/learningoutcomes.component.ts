@@ -31,7 +31,7 @@ import { Student } from '../../interfaces/Student';
 })
 export class LearningoutcomesComponent implements OnInit {
   
-  classes:GetSchoolClass[] = [];
+  classes:any[] = [];
   
   subjects: Subject[] = [];
   students:Student[]=[];
@@ -57,7 +57,12 @@ export class LearningoutcomesComponent implements OnInit {
   
   loadClasses() {
     this.ClassService.GetSchoolClass().subscribe(
-      (data)=>this.classes=data
+      (data)=>this.classes= data.map((item:any) => {
+        return {
+          ...item,
+          name: item.code
+        }
+      })
     );
   }
 
@@ -83,7 +88,7 @@ export class LearningoutcomesComponent implements OnInit {
     this.TeacherService.getGrade_By_IdClass_IdSubject(this.selectedClass, this.selectedSubject).subscribe(
       (data) => {
         this.studentGrade = data; // Lưu dữ liệu điểm học sinh
-
+        this.students = data as any;
         // Xử lý và kết hợp dữ liệu sinh viên, môn học và điểm
         this.studentGradeDetails = this.studentGrade.map((grade) => {
           const student = this.students.find(s => s.id === grade.studentId);

@@ -14,8 +14,8 @@ export class ClassService {
   constructor(private http: HttpClient) { }
 
  
-  GetSchoolClass(): Observable<GetSchoolClass[]> {
-    return this.http.get<{ data: GetSchoolClass[] }>(URL.CLASS.GET).pipe(
+  GetSchoolClass(): Observable<any[]> {
+    return this.http.get<{ data: any[] }>(URL.CLASS.GET).pipe(
       map((response) => response.data) 
     );
   }
