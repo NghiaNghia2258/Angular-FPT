@@ -26,6 +26,12 @@ export class StudentService {
       map((repon)=>repon.data)
     );
   }
+  
+  getGradeById(id:number): Observable<Student[]> {
+    return this.http.get<{data:Student[]}>(URL.STUDEN.GETGRADEBYID(id)).pipe(
+      map((repon)=>repon.data)
+    );
+  }
 
   // Thêm sinh viên mới
   addStudent(student: StudentAdd): Observable<string> {

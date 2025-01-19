@@ -1,43 +1,42 @@
 <div style="display: flex">
-    <app-navbar style="flex: 1"></app-navbar>
-    <div style="flex: 5">
-      <app-header></app-header>
-      <div class="card">
-        <h2>Bảng điểm của bạn</h2>
-      
-        <p *ngIf="!studentGrades.length">
-          Không tìm thấy dữ liệu bảng điểm. Vui lòng kiểm tra lại thông tin!
-        </p>
-      
-        <p-table
-          *ngIf="studentGrades.length"
-          [value]="studentGrades"
-          responsiveLayout="scroll"
-        >
-          <ng-template pTemplate="header">
-            <tr>
-              <th>Mã Môn Học</th>
-              <th>Tên Môn Học</th>
-              <th>Chuyên Cần</th>
-              <th>Bài Tập</th>
-              <th>Thi</th>
-              <th>Thực Hành</th>
-              <th>Điểm Tổng Kết</th>
-            </tr>
-          </ng-template>
-          <ng-template pTemplate="body" let-grade>
-            <tr>
-              <td>{{ grade.subjectCode }}</td>
-              <td>{{ grade.subjectName }}</td>
-              <td>{{ grade.attendance }}</td>
-              <td>{{ grade.homework }}</td>
-              <td>{{ grade.exam }}</td>
-              <td>{{ grade.practical }}</td>
-              <td>{{ calculateFinalGrade(grade) | number: '1.1-1' }}</td>
-            </tr>
-          </ng-template>
-        </p-table>
-      </div>      
+  <app-navbar style="flex: 1"></app-navbar>
+  <div style="flex: 5">
+    <app-header></app-header>
+    <div class="card">
+      <h2>Bảng điểm của bạn</h2>
+
+      <p *ngIf="!studentGrades.length">
+        Không tìm thấy dữ liệu bảng điểm. Vui lòng kiểm tra lại thông tin!
+      </p>
+
+      <p-table
+        *ngIf="studentGrades.length"
+        [value]="studentGrades"
+        responsiveLayout="scroll"
+      >
+        <ng-template pTemplate="header">
+          <tr>
+            <th>Mã Môn Học</th>
+            <th>Tên Môn Học</th>
+            <th>Chuyên Cần</th>
+            <th>Bài Tập</th>
+            <th>Thi</th>
+            <th>Thực Hành</th>
+            <th>Điểm Tổng Kết</th>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-grade>
+          <tr>
+            <td>{{ grade.subjectId }}</td>
+            <td>{{ grade.subjectName }}</td>
+            <td>{{ grade.attendanceGrade }}</td>
+            <td>{{ grade.homeworkGrade }}</td>
+            <td>{{ grade.examGrade }}</td>
+            <td>{{ grade.practicalGrade }}</td>
+            <td>{{ calculateFinalGrade(grade) | number : "1.1-1" }}</td>
+          </tr>
+        </ng-template>
+      </p-table>
     </div>
   </div>
-  
+</div>
