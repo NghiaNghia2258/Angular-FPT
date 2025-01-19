@@ -1,0 +1,40 @@
+/* Tổng thể giao diện dialog */
+.p-dialog .p-grid {
+    display: flex;
+    gap: 20px; /* Khoảng cách giữa hai cột */
+  }
+  
+  /* Cột danh sách tất cả sinh viên */
+  .p-dialog .p-col-6:nth-child(1) {
+    flex: 1;
+    border-right: 1px solid #ddd; /* Đường viền giữa hai cột */
+    padding-right: 20px;
+  }
+  
+  /* Cột danh sách sinh viên trong lớp */
+  .p-dialog .p-col-6:nth-child(2) {
+    flex: 1;
+    padding-left: 20px;
+  }
+  
+  /* Tiêu đề từng cột */
+  .p-dialog h3 {
+    font-size: 1.2rem;
+    margin-bottom: 15px;
+  }
+  
+  /* Tìm kiếm input trong từng cột */
+  .p-dialog .p-inputgroup {
+    margin-bottom: 15px;
+  }
+  
+  /* Bảng danh sách sinh viên */
+  .p-dialog .p-table {
+    width: 100%;
+  }
+  
+  /* Nút hành động */
+  .p-dialog .p-button {
+    margin-right: 5px;
+  }
+  

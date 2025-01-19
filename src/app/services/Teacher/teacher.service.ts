@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { map, Observable, of } from 'rxjs';
 import { URL } from '../../shared/url/url_services';
+import { StudentGrades } from '../../interfaces/StudentGrades';
 
 @Injectable({
   providedIn: 'root',
@@ -19,6 +20,23 @@ export class TeacherService {
   ];
 
   constructor(private http: HttpClient) {}
+  getGrade_By_IdClass_IdSubject(IdClass?: number, IdSubject?: number) :Observable<StudentGrades[]>{
+    let Api = URL.TEACHER.GETGRADE_IdClass_IdSubject;
+
+    if (IdClass) {
+        Api += `classId=${IdClass}&`;
+    }
+
+    if (IdSubject) {
+        Api += `subjectId=${IdSubject}&`;
+    }
+
+    Api = Api.endsWith("&") ? Api.slice(0, -1) : Api;
+
+   return this.http.get<{data:StudentGrades[]}>(Api).pipe(
+    map((data)=>data.data)
+   )
+}
 
   // Lấy danh sách giáo viên
   getAllTeacher(): Observable<GetTeacher[]> {

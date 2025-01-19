@@ -8,20 +8,21 @@ import { URL } from '../../shared/url/url_services';
   providedIn: 'root',
 })
 export class StudentService {
-  private students: Student[] = [
-    {
-      Code: '10621306',
-      FullName: 'Phạm Thanh Long',
-      EnrollmentYear: 2021,
-      Status: 1,
-    },
-  ];
+  
 
   constructor(private http: HttpClient) {}
 
   // Lấy danh sách sinh viên
   getAllStudent(): Observable<Student[]> {
     return this.http.get<{data:Student[]}>(URL.STUDEN.GET).pipe(
+      map((repon)=>repon.data)
+    );
+  }
+
+
+
+  getStudent_IdClass(id:number): Observable<Student[]> {
+    return this.http.get<{data:Student[]}>(URL.STUDEN.GETSTUDENT_IDCLASS(id)).pipe(
       map((repon)=>repon.data)
     );
   }
@@ -33,16 +34,16 @@ export class StudentService {
 
   // Cập nhật thông tin sinh viên
   updateStudent(code: string, updatedStudent: Student): Observable<string> {
-    try {
-      const index = this.students.findIndex((stu) => stu.Code === code);
-      if (index !== -1) {
-        this.students[index] = { ...this.students[index], ...updatedStudent };
-        return of('Cập nhật thông tin sinh viên thành công!');
-      }
-      return of('Không tìm thấy sinh viên để cập nhật!');
-    } catch {
+    // try {
+    //   const index = this.students.findIndex((stu) => stu.Code === code);
+    //   if (index !== -1) {
+    //     this.students[index] = { ...this.students[index], ...updatedStudent };
+    //     return of('Cập nhật thông tin sinh viên thành công!');
+    //   }
+    //   return of('Không tìm thấy sinh viên để cập nhật!');
+    // } catch {
       return of('Có lỗi xảy ra khi cập nhật sinh viên!');
-    }
+    // }
   }
 
   // Xóa sinh viên

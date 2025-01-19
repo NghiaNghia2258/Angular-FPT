@@ -43,7 +43,7 @@
         </div>
   
         <!-- Bảng danh sách sinh viên -->
-        <div *ngIf="students && students.length > 0">
+        <div *ngIf="studentGradeDetails && studentGradeDetails.length > 0">
           <p-table [value]="students" [responsiveLayout]="'scroll'" styleClass="p-datatable-gridlines">
             <ng-template pTemplate="header">
               <tr>

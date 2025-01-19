@@ -1,8 +1,9 @@
 export interface StudentGrades{
-    StudentId:number,
-    SubjectId:number,
-    PracticalGrade:number,
-    HomeworkGrade:number,
-    ExamGrade:number,
-    AttendanceGrade:number
+    id: number,
+    studentId: number,
+    subjectId: number,
+    practicalGrade: number,
+    homeworkGrade: number,
+    examGrade: number,
+    attendanceGrade: number,
 }

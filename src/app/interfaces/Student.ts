@@ -1,8 +1,16 @@
 export interface Student {
-    Code: string;
-    FullName: string;
-    EnrollmentYear: number;
-    Status: number;
+    id: number,
+      code: string,
+      fullName: string,
+      country: string,
+      city: string,
+      district: string,
+      ward: string,
+      gender: string,
+      identityCardNumber: string,
+      dateOfBirth: Date,
+      enrollmentYear: number,
+      status: number
   }
   
   export interface StudentAdd {
