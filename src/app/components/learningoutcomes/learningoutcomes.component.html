@@ -60,6 +60,7 @@
               <th>Điểm bài tập</th>
               <th>Điểm thi</th>
               <th>Điểm thực hành</th>
+              <th>Thao Tác</th>
             </tr>
           </ng-template>
           <ng-template pTemplate="body" let-student>
@@ -69,7 +70,8 @@
               <td>
                 <input
                   type="number"
-                  [(ngModel)]="student.AttendanceGrade"
+                  [(ngModel)]="student.attendanceGrade"
+
                   pInputText
                   min="0"
                   max="10"
@@ -79,7 +81,7 @@
               <td>
                 <input
                   type="number"
-                  [(ngModel)]="student.HomeworkGrade"
+                  [(ngModel)]="student.homeworkGrade"
                   pInputText
                   min="0"
                   max="10"
@@ -89,7 +91,7 @@
               <td>
                 <input
                   type="number"
-                  [(ngModel)]="student.ExamGrade"
+                  [(ngModel)]="student.examGrade"
                   pInputText
                   min="0"
                   max="10"
@@ -99,95 +101,25 @@
               <td>
                 <input
                   type="number"
-                  [(ngModel)]="student.PracticalGrade"
+                  [(ngModel)]="student.practicalGrade"
                   pInputText
                   min="0"
                   max="10"
                   style="width: 100%"
                 />
+              </td>
+              <td>
+                <button class="p-button" (click)="saveGrades(student)">Lưu</button>
               </td>
             </tr>
+            
           </ng-template>
         </p-table>
       </div>
-      <div style="display: flex; align-items: flex-end">
-        <button
-          pButton
-          pRipple
-          label="Tìm kiếm"
-          icon="pi pi-search"
-          class="p-button"
-          (click)="searchStudents()"
-        ></button>
-      </div>
+      
     </div>
 
-    <!-- Bảng danh sách sinh viên -->
-    <div *ngIf="studentGradeDetails && studentGradeDetails.length > 0">
-      <p-table
-        [value]="students"
-        [responsiveLayout]="'scroll'"
-        styleClass="p-datatable-gridlines"
-      >
-        <ng-template pTemplate="header">
-          <tr>
-            <th>Mã sinh viên</th>
-            <th>Tên sinh viên</th>
-            <th>Điểm chuyên cần</th>
-            <th>Điểm bài tập</th>
-            <th>Điểm thi</th>
-            <th>Điểm thực hành</th>
-          </tr>
-        </ng-template>
-        <ng-template pTemplate="body" let-student>
-          <tr>
-            <td>{{ student.studentCode }}</td>
-            <td>{{ student.studentName }}</td>
-            <td>
-              <input
-                type="number"
-                [(ngModel)]="student.AttendanceGrade"
-                pInputText
-                min="0"
-                max="10"
-                style="width: 100%"
-              />
-            </td>
-            <td>
-              <input
-                type="number"
-                [(ngModel)]="student.HomeworkGrade"
-                pInputText
-                min="0"
-                max="10"
-                style="width: 100%"
-              />
-            </td>
-            <td>
-              <input
-                type="number"
-                [(ngModel)]="student.ExamGrade"
-                pInputText
-                min="0"
-                max="10"
-                style="width: 100%"
-              />
-            </td>
-            <td>
-              <input
-                type="number"
-                [(ngModel)]="student.PracticalGrade"
-                pInputText
-                min="0"
-                max="10"
-                style="width: 100%"
-              />
-            </td>
-          </tr>
-        </ng-template>
-      </p-table>
-    </div>
-    <!-- Thông báo khi không có dữ liệu -->
+    
     <div
       *ngIf="students && students.length === 0"
       class="p-text-center"
@@ -196,32 +128,6 @@
       Không tìm thấy sinh viên nào.
     </div>
 
-    <!-- Nút lưu -->
-    <div
-      class="button-container"
-      style="
-        margin-top: 20px;
-        display: flex;
-        justify-content: flex-end;
-        gap: 10px;
-      "
-    >
-      <button
-        pButton
-        pRipple
-        label="Hủy"
-        icon="pi pi-times"
-        class="p-button-text"
-        (click)="cancel()"
-      ></button>
-      <button
-        pButton
-        pRipple
-        label="Lưu"
-        icon="pi pi-check"
-        class="p-button"
-        (click)="saveGrades()"
-      ></button>
-    </div>
+   
   </div>
 </div>

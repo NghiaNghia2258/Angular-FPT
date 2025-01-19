@@ -12,6 +12,7 @@ export const URL={
         UPDATE:`${env.baseUrl}/Teacher`,
         DELETE:(id:number)=> `${env.baseUrl}/Teacher/${id}`,
         GETGRADE_IdClass_IdSubject:`${env.baseUrl}/Teacher/get-grade-by-classId-subjectId?`,
+        UPDATE_GRADE_STUDENT:`${env.baseUrl}/Teacher/update-grade`
     },
     STUDEN:{
         GET:`${env.baseUrl}/Student`,
