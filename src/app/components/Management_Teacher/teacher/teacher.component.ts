@@ -99,12 +99,12 @@ export class TeacherComponent implements OnInit{
       accept: () => {
         this.teacherService.deleteTeacher(id).subscribe(
           () => {
-            this.messageService.add({severity:'success', summary: 'Success', detail: 'Department deleted'});
+            this.messageService.add({severity:'success', summary: 'Success', detail: 'teacher deleted'});
             this.loadTeacher();
           },
           (error) => {
-            console.error('Error deleting department', error);
-            this.messageService.add({severity:'error', summary: 'Error', detail: 'Unable to delete department'});
+            console.error('Error deleting teacher', error);
+            this.messageService.add({severity:'error', summary: 'Error', detail: 'Unable to delete teacher'});
           }
         );
       }

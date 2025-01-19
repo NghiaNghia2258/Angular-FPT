@@ -37,8 +37,9 @@
         <ng-template pTemplate="header">
           <tr>
             <th>Mã sinh viên</th>
+            <th>Lớp học</th>
+            <th>Chuyên ngành</th>
             <th>Họ và tên</th>
-            <th>Quốc gia</th>
             <th>Thành phố</th>
             <th>Giới tính</th>
             <th>Thao tác</th>
@@ -46,9 +47,10 @@
         </ng-template>
         <ng-template pTemplate="body" let-student>
           <tr>
-            <td>{{ student.identityCardNumber }}</td>
+            <td>{{ student.code }}</td>
+            <td>{{ student.classCode }}</td>
+            <td>{{ student.majorName }}</td>
             <td>{{ student.fullName }}</td>
-            <td>{{ student.country }}</td>
             <td>{{ student.city }}</td>
             <td>{{ student.gender }}</td>
             <td>
@@ -73,18 +75,6 @@
         <ng-template pTemplate="content">
           <div class="p-grid p-fluid">
             <!-- Row 1 -->
-            <div class="p-col-4">
-              <div class="p-field">
-                <label for="identityCardNumber">Mã sinh viên</label>
-                <input
-                  id="identityCardNumber"
-                  pInputText
-                  type="text"
-                  [(ngModel)]="student.identityCardNumber"
-                  required
-                />
-              </div>
-            </div>
             <div class="p-col-4">
               <div class="p-field">
                 <label for="fullName">Họ và tên</label>
@@ -162,7 +152,6 @@
               </div>
             </div>
 
-            
             <div class="p-col-4">
               <div class="p-field">
                 <label for="dateOfBirth">Ngày sinh</label>

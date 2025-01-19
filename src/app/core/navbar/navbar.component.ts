@@ -26,7 +26,6 @@ export class NavbarComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-<<<<<<< HEAD
     this.roleGroupId = this.authService.getUser();
     if(Number(this.roleGroupId) === 4){
       this.items = [
@@ -85,14 +84,19 @@ export class NavbarComponent implements OnInit {
           label: 'Danh Mục',
           items: [
             {
-              label: 'Quản lý khoa',
+              label: 'Danh sách khoa',
               icon: 'pi pi-plus',
               command: () => this.navigateTo('/departman')
             },
             {
+              label: 'Danh sách môn học',
+              icon: 'pi pi-search',
+              command: () => this.navigateTo('/subject')
+            },
+            {
               label: 'Quản Lý Lớp',
               icon: 'pi pi-search',
-              command: () => this.navigateTo('/documents/search')
+              command: () => this.navigateTo('/Class')
             },
             {
               label: 'Quản Lý sinh viên',
@@ -104,21 +108,10 @@ export class NavbarComponent implements OnInit {
               icon: 'pi pi-search',
               command: () => this.navigateTo('/teacheraaaa')
             },
-  
-            {
-              label: 'Quản Lý môn học',
-              icon: 'pi pi-search',
-              command: () => this.navigateTo('/subject')
-            },
             {
               label: 'Quản Lý điểm',
               icon: 'pi pi-search',
               command: () => this.navigateTo('/Learningoutcomesmanagement')
-            },
-            {
-              label: 'Thành tích học tập',
-              icon: 'pi pi-search',
-              command: () => this.navigateTo('/studentGrade')
             },
           ]
         },
@@ -151,75 +144,6 @@ export class NavbarComponent implements OnInit {
       ];
     }
     
-=======
-    this.authService.user().subscribe({
-      next:Response=>{
-        this.user=Response
-      }
-    })
-    this.user=this.authService.getUser();
-    this.items = [
-      {
-        separator: true
-      },
-      {
-        label: 'Danh Mục',
-        items: [
-          {
-            label: 'Quản lý khoa',
-            icon: 'pi pi-plus',
-            command: () => this.navigateTo('/departman')
-          },
-          {
-            label: 'Quản Lý Lớp',
-            icon: 'pi pi-search',
-            command: () => this.navigateTo('/Class')
-          },
-          {
-            label: 'Quản Lý sinh viên',
-            icon: 'pi pi-search',
-            command: () => this.navigateTo('/student')
-          },
-          {
-            label: 'Quản Lý giảng viên',
-            icon: 'pi pi-search',
-            command: () => this.navigateTo('/teacheraaaa')
-          },
-          {
-            label: 'Quản Lý môn học',
-            icon: 'pi pi-search',
-            command: () => this.navigateTo('/subject')
-          }
-        ]
-      },
-      {
-        label: 'Profile',
-        items: [
-          {
-            label: 'Settings',
-            icon: 'pi pi-cog',
-            shortcut: '⌘+O',
-            command: () => this.navigateTo('/profile/settings')
-          },
-          {
-            label: 'Messages',
-            icon: 'pi pi-inbox',
-            badge: '2',
-            command: () => this.navigateTo('/profile/messages')
-          },
-          {
-            label: 'Logout',
-            icon: 'pi pi-sign-out',
-            shortcut: '⌘+Q',
-            command: () => this.logout()
-          }
-        ]
-      },
-      {
-        separator: true
-      }
-    ];
->>>>>>> origin/QuanLyDiem
   }
 
   navigateTo(route: string) {
