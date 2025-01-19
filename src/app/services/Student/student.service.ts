@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
-import { Student } from '../../interfaces/Student';
+import { Student, StudentAdd } from '../../interfaces/Student';
 import { HttpClient } from '@angular/common/http';
-import { Observable, of } from 'rxjs';
+import { map, Observable, of } from 'rxjs';
+import { URL } from '../../shared/url/url_services';
 
 @Injectable({
   providedIn: 'root',
@@ -20,17 +21,14 @@ export class StudentService {
 
   // Lấy danh sách sinh viên
   getAllStudent(): Observable<Student[]> {
-    return of(this.students);
+    return this.http.get<{data:Student[]}>(URL.STUDEN.GET).pipe(
+      map((repon)=>repon.data)
+    );
   }
 
   // Thêm sinh viên mới
-  addStudent(student: Student): Observable<string> {
-    try {
-      this.students.push(student);
-      return of('Đã thêm sinh viên thành công!');
-    } catch {
-      return of('Có lỗi xảy ra khi thêm sinh viên!');
-    }
+  addStudent(student: StudentAdd): Observable<string> {
+    return  this.http.post<string>(URL.STUDEN.ADD,student);
   }
 
   // Cập nhật thông tin sinh viên
@@ -48,14 +46,9 @@ export class StudentService {
   }
 
   // Xóa sinh viên
-  deleteStudent(code: string): Observable<string> {
+  deleteStudent(id:number): Observable<string> {
     try {
-      const index = this.students.findIndex((stu) => stu.Code === code);
-      if (index !== -1) {
-        this.students.splice(index, 1);
-        return of('Đã xóa sinh viên thành công!');
-      }
-      return of('Không tìm thấy sinh viên để xóa!');
+     return this.http.delete<string>(URL.STUDEN.DELETE(id));
     } catch {
       return of('Có lỗi xảy ra khi xóa sinh viên!');
     }

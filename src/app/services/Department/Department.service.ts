@@ -4,22 +4,23 @@ import { HttpClient } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { Faculty } from '../../interfaces/Faculty';
 import { map } from 'rxjs/operators';
+import { Major } from '../../interfaces/Major';
 @Injectable({
   providedIn: 'root'
 })
 export class DepartmentService {
-  private departments: Faculty[] = [
-
-      { id: 1, name: 'Khoa Công nghệ Thông tin',code: 'Khoa Cntt' },
- 
-  ];
-
   constructor(private http: HttpClient) { }
 
  
   getDepartments(): Observable<Faculty[]> {
     return this.http.get<{ data: Faculty[] }>(URL.Faculty.GETALL).pipe(
       map((response) => response.data) 
+    );
+  }
+
+  getFacultyByID(id:number):Observable<Major[]>{
+    return this.http.get<{data:Major[]}>(URL.Faculty.GETMAJORBYID(id)).pipe(
+      map((response)=> response.data)
     );
   }
 

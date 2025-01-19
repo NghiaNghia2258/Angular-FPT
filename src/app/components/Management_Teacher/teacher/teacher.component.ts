@@ -1,5 +1,5 @@
 import { TeacherService } from '../../../services/Teacher/teacher.service';
-import { Teacher } from '../../../interfaces/Teacher';
+import { GetTeacher, Teacher } from '../../../interfaces/Teacher';
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
@@ -37,7 +37,7 @@ import { Route, Router } from '@angular/router';
   styleUrl: './teacher.component.css'
 })
 export class TeacherComponent implements OnInit{
-  teachers: Teacher[] = [];
+  teachers: GetTeacher[] = [];
   departments:Faculty[]=[];
   teacher: Teacher = {} as Teacher;
   displayDialog: boolean = false;
@@ -93,11 +93,11 @@ export class TeacherComponent implements OnInit{
     this.displayDialog = true;
   }
 
-  delete(teacher: Teacher) {
+  delete(id: number) {
     this.confirmationService.confirm({
       message: 'Are you sure you want to delete this teacher?',
       accept: () => {
-        this.teacherService.deleteTeacher(teacher.Code).subscribe(
+        this.teacherService.deleteTeacher(id).subscribe(
           () => {
             this.messageService.add({severity:'success', summary: 'Success', detail: 'Department deleted'});
             this.loadTeacher();
