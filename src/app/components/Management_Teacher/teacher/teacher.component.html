@@ -25,13 +25,13 @@
               </ng-template>
               <ng-template pTemplate="body" let-teacher>
                 <tr>
-                  <td>{{teacher.Code}}</td>
-                  <td>{{teacher.FullName}}</td>
-                  <td>{{teacher.Email}}</td>
-                  <td>{{teacher.Phone}}</td>
+                  <td>{{teacher.code}}</td>
+                  <td>{{teacher.fullName}}</td>
+                  <td>{{teacher.email}}</td>
+                  <td>{{teacher.phone}}</td>
                   <td>
                     <button pButton  class="p-button  p-mr-2" (click)="edit(teacher)">Sửa</button>
-                    <button pButton  class="p-button " (click)="delete(teacher)">Xóa</button>
+                    <button pButton  class="p-button " (click)="delete(teacher.id)">Xóa</button>
                     <button pButton  class="p-button " (click)="delete(teacher)">Thêm môn học</button>
                   </td>
                 </tr>

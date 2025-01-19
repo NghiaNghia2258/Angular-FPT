@@ -46,7 +46,7 @@ export class NavbarComponent implements OnInit {
           {
             label: 'Quản Lý Lớp',
             icon: 'pi pi-search',
-            command: () => this.navigateTo('/documents/search')
+            command: () => this.navigateTo('/Class')
           },
           {
             label: 'Quản Lý sinh viên',

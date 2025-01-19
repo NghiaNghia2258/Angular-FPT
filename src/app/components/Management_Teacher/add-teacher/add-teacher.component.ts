@@ -1,5 +1,5 @@
 import { TeacherService } from '../../../services/Teacher/teacher.service';
-import { addTeacher, Teacher } from '../../../interfaces/Teacher';
+import { addTeacher, GetTeacher, Teacher } from '../../../interfaces/Teacher';
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
@@ -40,7 +40,7 @@ import { SubjectService } from '../../../services/Subject/subject.service';
   styleUrl: './add-teacher.component.css'
 })
 export class AddTeacherComponent implements OnInit{
-  teachers: Teacher[] = [];
+  teachers: GetTeacher[] = [];
   departments:Faculty[]=[];
   teacher: Teacher = {} as Teacher;
   subjects: any[] = [];
@@ -108,7 +108,11 @@ export class AddTeacherComponent implements OnInit{
       };
       this.teacherService.addTeacher(teacherData).subscribe(
         () => {
+          
           this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Teacher added successfully' });
+          
+          
+          this.resetForm();
         },
         (error) => {
           console.error('Error adding teacher', error);
@@ -118,6 +122,12 @@ export class AddTeacherComponent implements OnInit{
     } else {
       this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Please fill all required fields' });
     }
+  }
+  
+  
+  resetForm() {
+    this.teacher = {} as Teacher;  
+    this.selectedSubjects = [];   
   }
   
   managementTeacher() {

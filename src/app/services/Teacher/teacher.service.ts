@@ -1,7 +1,7 @@
-import { addTeacher, Teacher } from './../../interfaces/Teacher';
+import { addTeacher, GetTeacher, Teacher } from './../../interfaces/Teacher';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable, of } from 'rxjs';
+import { map, Observable, of } from 'rxjs';
 import { URL } from '../../shared/url/url_services';
 
 @Injectable({
@@ -21,13 +21,14 @@ export class TeacherService {
   constructor(private http: HttpClient) {}
 
   // Lấy danh sách giáo viên
-  getAllTeacher(): Observable<Teacher[]> {
-    return of(this.teachers);
+  getAllTeacher(): Observable<GetTeacher[]> {
+    return this.http.get<{ data: GetTeacher[] }>(URL.TEACHER.GET).pipe(
+      map((response) => response.data) 
+    );
   }
-
   // Thêm giáo viên mới
-  addTeacher(teacher: addTeacher): Observable<void> {   
-    return  this.http.post<void>(URL.TEACHER.ADD,teacher);
+  addTeacher(teacher: addTeacher): Observable<string> {   
+    return  this.http.post<string>(URL.TEACHER.ADD,teacher);
   }
 
   // Cập nhật thông tin giáo viên
@@ -45,14 +46,9 @@ export class TeacherService {
   }
 
   // Xóa giáo viên
-  deleteTeacher(code: string): Observable<string> {
+  deleteTeacher(id: number): Observable<string> {
     try {
-      const index = this.teachers.findIndex((t) => t.Code === code);
-      if (index !== -1) {
-        this.teachers.splice(index, 1);
-        return of('Đã xóa thành công!');
-      }
-      return of('Không tìm thấy giáo viên để xóa!');
+     return this.http.delete<string>(URL.TEACHER.DELETE(id));
     } catch {
       return of('Có lỗi xảy ra khi xóa!');
     }

@@ -1,6 +1,5 @@
 export interface Major{
-    MajorID: string,
-    MajorName:string,
-    FacultyID:string,
-    Description:string
+    id: number,
+    code:string,
+    name:string,
 }
