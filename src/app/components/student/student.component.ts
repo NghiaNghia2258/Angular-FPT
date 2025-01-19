@@ -1,5 +1,5 @@
 import { StudentService } from './../../services/Student/student.service';
-import { Student } from './../../interfaces/Student';
+import { Student, StudentAdd } from './../../interfaces/Student';
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
@@ -33,7 +33,7 @@ import {HeaderComponent} from '../../core/header/header.component'
 })
 export class StudentComponent implements OnInit{
   students: Student[] = [];
-  student: Student = {} as Student;
+  student: StudentAdd = {} as StudentAdd;
   displayDialog: boolean = false;
   isNewStudent: boolean = false;
 
@@ -60,7 +60,7 @@ export class StudentComponent implements OnInit{
 
   showDialogToAdd() {
     this.isNewStudent = true;
-    this.student = {} as Student;
+    this.student = {} as StudentAdd;
     this.displayDialog = true;
   }
 
@@ -91,7 +91,7 @@ export class StudentComponent implements OnInit{
     this.displayDialog = false;
   }
 
-  edit(student: Student) {
+  edit(student: StudentAdd) {
     this.student = {...student};
     this.isNewStudent = false;
     this.displayDialog = true;

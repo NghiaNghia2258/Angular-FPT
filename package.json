@@ -19,8 +19,6 @@
     "@angular/platform-browser-dynamic": "^18.2.0",
     "@angular/router": "^18.2.0",
     "json-server": "^1.0.0-beta.3",
-    "jwt-decode": "^4.0.0",
-    "ngx-cookie-service": "^19.0.0",
     "primeflex": "^3.3.1",
     "primeicons": "^7.0.0",
     "primeng": "^17.18.10",

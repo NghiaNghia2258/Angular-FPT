@@ -1,4 +1,3 @@
-import { CookieService } from 'ngx-cookie-service';
 import { Component, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
@@ -28,21 +27,24 @@ export class LoginComponent {
     email: '',
     password: '',
   };
-  constructor(private authService:AuthService,
-    private cookieService:CookieService,private router:Router,
-    private messageService:MessageService
-  ){}
 
+  private authService = inject(AuthService);
+  private router = inject(Router);
+  private messageService = inject(MessageService);
   onLogin() {
     const { email, password } = this.login;
-    debugger;
-    this.authService.getUserDetails(email, password).subscribe({
+    this.authService.signIn(email, password).subscribe({
       next: (response) => {
-        const studentId = 'SV001'; 
-        localStorage.setItem('studentId', studentId);
-            // this.cookieService.set("Authentication",
-            // `Bearer ${response}`, undefined, '/', undefined, true, 'Strict');
+        if (response.isSucceeded) {
+          localStorage.setItem("accessToken", response.data.accessToken);
           this.router.navigate(['home']);
+        } else {
+          this.messageService.add({
+            severity: 'error',
+            summary: 'Error',
+            detail: 'Something went wrong',
+          });
+        }
       },
       error: () => {
         this.messageService.add({
