@@ -74,7 +74,7 @@ export class LearningoutcomesComponent implements OnInit {
 
   
   searchStudents() {
-    if (!this.selectedClass || !this.selectedSubject) {
+    if (this.selectedClass===null || !this.selectedSubject===null) {
       alert('Vui lòng chọn lớp học và môn học!');
       return;
     }
@@ -100,7 +100,7 @@ export class LearningoutcomesComponent implements OnInit {
             attendanceGrade: grade.attendanceGrade
           };
         });
-
+        console.log(this.studentGradeDetails);
         // Nếu không có kết quả điểm, cảnh báo cho người dùng
         if (this.studentGradeDetails.length === 0) {
           alert('Không có dữ liệu điểm cho sinh viên trong lớp và môn học này!');

@@ -13,7 +13,7 @@
               [options]="classes"
               [(ngModel)]="selectedClass"
               placeholder="Chọn lớp học"
-              optionLabel="name"
+              optionLabel="code"
               optionValue="id"
               [style]="{ width: '100%' }"
             ></p-dropdown>
@@ -49,7 +49,7 @@
               <tr>
                 <th>Mã sinh viên</th>
                 <th>Tên sinh viên</th>
-                <th>Tên lớp</th>
+                <th>Tên Môn học</th>
                 <th>Điểm chuyên cần</th>
                 <th>Điểm bài tập</th>
                 <th>Điểm thi</th>
@@ -59,8 +59,8 @@
             <ng-template pTemplate="body" let-student>
               <tr>
                 <td>{{ student.id }}</td>
-                <td>{{ student.name }}</td>
-                <td>{{ student.className }}</td>
+                <td>{{ student.studentName }}</td>
+                <td>{{ student.subjectName }}</td>
                 <td>
                   <input
                     type="number"
