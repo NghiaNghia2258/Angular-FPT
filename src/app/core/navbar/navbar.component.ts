@@ -19,90 +19,137 @@ import { Router } from '@angular/router';
 export class NavbarComponent implements OnInit {
   user?: User;
   items: MenuItem[] | undefined;
+  roleGroupId: string = "";
 
   constructor(private router: Router,
     private authService:AuthService
   ) {}
 
   ngOnInit() {
-    this.authService.user().subscribe({
-      next:Response=>{
-        this.user=Response
-      }
-    })
-    this.user=this.authService.getUser();
-    this.items = [
-      {
-        separator: true
-      },
-      {
-        label: 'Danh Mục',
-        items: [
-          {
-            label: 'Quản lý khoa',
-            icon: 'pi pi-plus',
-            command: () => this.navigateTo('/departman')
-          },
-          {
-            label: 'Quản Lý Lớp',
-            icon: 'pi pi-search',
-            command: () => this.navigateTo('/documents/search')
-          },
-          {
-            label: 'Quản Lý sinh viên',
-            icon: 'pi pi-search',
-            command: () => this.navigateTo('/student')
-          },
-          {
-            label: 'Quản Lý giảng viên',
-            icon: 'pi pi-search',
-            command: () => this.navigateTo('/teacheraaaa')
-          },
-
-          {
-            label: 'Quản Lý môn học',
-            icon: 'pi pi-search',
-            command: () => this.navigateTo('/subject')
-          },
-          {
-            label: 'Quản Lý điểm',
-            icon: 'pi pi-search',
-            command: () => this.navigateTo('/Learningoutcomesmanagement')
-          },
-          {
-            label: 'Thành tích học tập',
-            icon: 'pi pi-search',
-            command: () => this.navigateTo('/studentGrade')
-          },
-        ]
-      },
-      {
-        label: 'Profile',
-        items: [
-          {
-            label: 'Settings',
-            icon: 'pi pi-cog',
-            shortcut: '⌘+O',
-            command: () => this.navigateTo('/profile/settings')
-          },
-          {
-            label: 'Messages',
-            icon: 'pi pi-inbox',
-            badge: '2',
-            command: () => this.navigateTo('/profile/messages')
-          },
-          {
-            label: 'Logout',
-            icon: 'pi pi-sign-out',
-            shortcut: '⌘+Q',
-            command: () => this.logout()
-          }
-        ]
-      },
-      {
-        separator: true
-      }
-    ];
+    this.roleGroupId = this.authService.getUser();
+    if(Number(this.roleGroupId) === 4){
+      this.items = [
+        {
+          separator: true
+        },
+        {
+          label: 'Danh Mục',
+          items: [
+            {
+              label: 'Kết quả học tập',
+              icon: 'pi pi-search',
+              command: () => this.navigateTo('/Learningoutcomesmanagement')
+            },
+            {
+              label: 'Thành tích học tập',
+              icon: 'pi pi-search',
+              command: () => this.navigateTo('/studentGrade')
+            },
+          ]
+        },
+        {
+          label: 'Profile',
+          items: [
+            {
+              label: 'Settings',
+              icon: 'pi pi-cog',
+              shortcut: '⌘+O',
+              command: () => this.navigateTo('/profile/settings')
+            },
+            {
+              label: 'Messages',
+              icon: 'pi pi-inbox',
+              badge: '2',
+              command: () => this.navigateTo('/profile/messages')
+            },
+            {
+              label: 'Logout',
+              icon: 'pi pi-sign-out',
+              shortcut: '⌘+Q',
+              command: () => this.logout()
+            }
+          ]
+        },
+        {
+          separator: true
+        }
+      ];
+    }
+    else{
+      this.items = [
+        {
+          separator: true
+        },
+        {
+          label: 'Danh Mục',
+          items: [
+            {
+              label: 'Quản lý khoa',
+              icon: 'pi pi-plus',
+              command: () => this.navigateTo('/departman')
+            },
+            {
+              label: 'Quản Lý Lớp',
+              icon: 'pi pi-search',
+              command: () => this.navigateTo('/documents/search')
+            },
+            {
+              label: 'Quản Lý sinh viên',
+              icon: 'pi pi-search',
+              command: () => this.navigateTo('/student')
+            },
+            {
+              label: 'Quản Lý giảng viên',
+              icon: 'pi pi-search',
+              command: () => this.navigateTo('/teacheraaaa')
+            },
+  
+            {
+              label: 'Quản Lý môn học',
+              icon: 'pi pi-search',
+              command: () => this.navigateTo('/subject')
+            },
+            {
+              label: 'Quản Lý điểm',
+              icon: 'pi pi-search',
+              command: () => this.navigateTo('/Learningoutcomesmanagement')
+            },
+            {
+              label: 'Thành tích học tập',
+              icon: 'pi pi-search',
+              command: () => this.navigateTo('/studentGrade')
+            },
+          ]
+        },
+        {
+          label: 'Profile',
+          items: [
+            {
+              label: 'Settings',
+              icon: 'pi pi-cog',
+              shortcut: '⌘+O',
+              command: () => this.navigateTo('/profile/settings')
+            },
+            {
+              label: 'Messages',
+              icon: 'pi pi-inbox',
+              badge: '2',
+              command: () => this.navigateTo('/profile/messages')
+            },
+            {
+              label: 'Logout',
+              icon: 'pi pi-sign-out',
+              shortcut: '⌘+Q',
+              command: () => this.logout()
+            }
+          ]
+        },
+        {
+          separator: true
+        }
+      ];
+    }
+    
   }
 
   navigateTo(route: string) {

@@ -45,13 +45,11 @@ export class AuthService {
     return this.$user.asObservable();
   }
 
-  getUser(): User | undefined {
-    const email = localStorage.getItem("user-email");
+  getUser(): any {
+    const roleGroupId = localStorage.getItem("roleGroupId");
 
-    if (email) {
-      return {
-        email:email
-      };
+    if (roleGroupId) {
+      return roleGroupId;
     }
 
     return undefined;

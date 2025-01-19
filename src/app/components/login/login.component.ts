@@ -37,6 +37,7 @@ export class LoginComponent {
       next: (response) => {
         if (response.isSucceeded) {
           localStorage.setItem("accessToken", response.data.accessToken);
+          localStorage.setItem("roleGroupId", response.data.roleGroupId);
           this.router.navigate(['home']);
         } else {
           this.messageService.add({
