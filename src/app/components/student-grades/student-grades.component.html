@@ -72,26 +72,15 @@
             </div>
             <div class="p-field">
               <label for="Rating">Rating</label>
-              <input
-                id="Rating"
-                pInputText
-                type="number"
-                [(ngModel)]="teacherReviews.Rating"
-                required
-                style="width: 100%"
-              />
+              <p-rating 
+                [(ngModel)]="teacherReviews.Rating" 
+                [cancel]="false" 
+                stars="5" 
+                style="font-size: 1.5rem;">
+              </p-rating>
             </div>
-            <div class="p-field">
-              <label for="Phone">Review</label>
-              <input
-                id="Review"
-                pInputText
-                type="text"
-                [(ngModel)]="teacherReviews.Review"
-                required
-                style="width: 100%"
-              />
-            </div>
+            
+            
           </div>
         </ng-template>
         <ng-template pTemplate="footer">

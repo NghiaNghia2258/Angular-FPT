@@ -8,13 +8,13 @@ import { StudentService } from '../../services/Student/student.service';
 import { DialogModule } from 'primeng/dialog';
 import { FormsModule } from '@angular/forms';
 import { ConfirmationService, MessageService } from 'primeng/api';
-
+import { RatingModule } from 'primeng/rating';
 @Component({
   selector: 'app-student-grades',
   standalone: true,
   imports: [CommonModule, TableModule,
     NavbarComponent,HeaderComponent,
-    DialogModule,FormsModule
+    DialogModule,FormsModule,RatingModule
   ],
   providers: [ConfirmationService, MessageService],
 

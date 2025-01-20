@@ -22,7 +22,7 @@ export const URL={
         DELETE:(id:number)=>`${env.baseUrl}/Student/${id}`,
         GETSTUDENT_IDCLASS:(Id:number)=>`${env.baseUrl}/Student/get-by-class-id?schoolClassId=${Id}`,
         GETGRADEBYID:(Id:number)=>`${env.baseUrl}/Student/get-grades/${Id}`,
-        TEACHEREVIEW:`${env.baseUrl}`,
+        TEACHEREVIEW:`${env.baseUrl}/Student/feedback`,
     },
     CLASS:{
         GET:`${env.baseUrl}/SchoolClass`,
@@ -32,6 +32,10 @@ export const URL={
         DELETE:(Id:number)=>`${env.baseUrl}/SchoolClass/${Id}`,
         ADD_STUDENT:`${env.baseUrl}/SchoolClass/add-students-to-class`,
         DEL_STUDENT:(idStudent:number,idClass:number)=> `${env.baseUrl}/SchoolClass/remove-student-from-class?studentId=${idStudent}&schoolClassId=${idClass}`
+    },
+    ACCOUNT:{
+        GET:`${env.baseUrl}`,
+        UPDATE:`${env.baseUrl}`,
     }
 
 } 
