@@ -144,7 +144,7 @@ export class ClassComponent implements OnInit{
       (data)=>{
         var updateTeacher={
           ...data,
-          homeroomTeacherId:this.SchoolClassItem.homeroomTeacherId,
+          homeroomTeacherId:this.selectedTeacher,
           maxStudents:this.SchoolClassItem.maxStudents
         }
         this.classService.UpdateSchoolClass(updateTeacher).subscribe(
