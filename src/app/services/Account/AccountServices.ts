@@ -32,7 +32,7 @@ export class AccountServices {
   }
 
   UpdateAccount(value:any):Observable<string>{
-    return this.http.put<string>(URL.ACCOUNT.UPDATE,value);
+    return this.http.post<string>(URL.ACCOUNT.UPDATE,value);
   }
 }
 

@@ -37,7 +37,6 @@
           <ng-template pTemplate="header">
             <tr>
               <th>Tên đăng nhập</th>
-              <th>Mật Khẩu</th>
               <th>Nhóm quyền</th>
               <th>Thao tác</th>
             </tr>
@@ -45,14 +44,10 @@
           <ng-template pTemplate="body" let-account>
             <tr>
               <td>{{ account.username }}</td>
-              <td>{{ account.password }}</td>
               <td>{{ account.rolegroupName }}</td>
               <td>
                 <button pButton class="p-button p-mr-2" (click)="edit(account)">
-                  Sửa
-                </button>
-                <button pButton class="p-button" (click)="delete(account.id)">
-                  Xóa
+                  Đổi mật khẩu
                 </button>
               </td>
             </tr>
@@ -81,16 +76,19 @@
                   />
                 </div>
               </div>
-              <div class="p-col-4">
-                <div class="p-field">
-                  <label for="gender">Mật Khẩu</label>
-                  <input
-                    id="gender"
-                    pInputText
-                    type="text"
-                    [(ngModel)]="account.password "
-                    required
-                  />
+              <div class="p-grid p-fluid">              
+                <!-- Nhập mật khẩu mới -->
+                <div class="p-col-6">
+                  <div class="p-field">
+                    <label for="newPassword">Mật khẩu mới</label>
+                    <input
+                      id="newPassword"
+                      pInputText
+                      type="password"
+                      [(ngModel)]="newPassword "
+                      required
+                    />
+                  </div>
                 </div>
               </div>
   

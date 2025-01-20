@@ -14,5 +14,7 @@ export interface Login{
 
 
 export interface Account{
-  username:string, password:string, rolegroupName:string
+  id:number,
+  username:string,
+   rolegroupName:string
 }

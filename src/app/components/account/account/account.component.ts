@@ -31,6 +31,8 @@ import { DropdownModule } from 'primeng/dropdown';
         DropdownModule
 
   ],
+  providers: [ConfirmationService, MessageService],
+
   templateUrl: './account.component.html',
   styleUrl: './account.component.css'
 })
@@ -38,12 +40,13 @@ export class AccountComponent implements OnInit{
   accounts:Account[]=[];
   account:Account={} as Account;
   displayDialog:boolean=false;
-
+  newPassword: string = '';
   constructor(private accountServices:AccountServices){}
   ngOnInit(): void {
     this.LoadAccount();
   }
-
+  
+  
   LoadAccount(){
     this.accountServices.GetAllAccount().subscribe(
       (data)=>{
@@ -52,18 +55,36 @@ export class AccountComponent implements OnInit{
     )
   }
   edit(account:Account){
-      this.accountServices.UpdateAccount(account).subscribe(
-        ()=>{
-
-        }
-      )
+    this.account = {...account};
+    this.displayDialog=true;
   }
 
   delete(id:number){
 
   }
 
-  save(){
+  save() {
+    if (this.newPassword.trim() === '') {
+      alert('Vui lòng nhập mật khẩu mới!');
+      return;
+    }
+
+    const data={
+      id:this.account.id,
+      newPass:this.newPassword
+    }
+
+      this.accountServices.UpdateAccount(data).subscribe(
+        () => {
+          alert('Đổi mật khẩu thành công!');
+          this.LoadAccount(); 
+          this.displayDialog = false; 
+          this.newPassword='';
+        },
+        (error) => {
+          alert('Đã xảy ra lỗi khi đổi mật khẩu: ' + error.message);
+        }
+      );
     
   }
 }
