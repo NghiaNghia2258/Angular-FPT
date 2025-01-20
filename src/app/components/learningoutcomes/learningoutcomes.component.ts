@@ -14,6 +14,7 @@ import { GetSchoolClass } from '../../interfaces/SchoolClass';
 import { Subject } from '../../interfaces/Subject';
 import { StudentGrades } from '../../interfaces/StudentGrades';
 import { Student } from '../../interfaces/Student';
+import { MessageService } from 'primeng/api';
 @Component({
   selector: 'app-learningoutcomes',
   standalone: true,
@@ -45,7 +46,9 @@ export class LearningoutcomesComponent implements OnInit {
   constructor(private ClassService:ClassService,
          private SubjectService:SubjectService,
          private TeacherService:TeacherService,
-         private StudentService:StudentService
+         private StudentService:StudentService,
+        private messageService: MessageService
+         
   ) {}
 
   ngOnInit(): void {
@@ -102,7 +105,8 @@ export class LearningoutcomesComponent implements OnInit {
             practicalGrade: grade.practicalGrade,
             homeworkGrade: grade.homeworkGrade,
             examGrade: grade.examGrade,
-            attendanceGrade: grade.attendanceGrade
+            attendanceGrade: grade.attendanceGrade,
+            version:grade.version
           };
         });
         console.log(this.studentGradeDetails);
@@ -118,17 +122,30 @@ export class LearningoutcomesComponent implements OnInit {
     );
   }
 
-  
-  saveGrades() {
-    if (!this.students || this.students.length === 0) {
-      alert('Không có dữ liệu sinh viên để lưu!');
-      return;
+  saveGrades(studen:any) {
+    const data={
+      studentId: studen.studentId,
+      subjectId: studen.subjectId,
+      practicalGrade: studen.practicalGrade,
+      homeworkGrade: studen.homeworkGrade,
+      examGrade: studen.examGrade,
+      attendanceGrade: studen.attendanceGrade,
+      version: studen.version
     }
-    console.log('Dữ liệu điểm cần lưu:', this.students);
-    alert('Lưu điểm thành công!');
+    console.log(data);
+    this.TeacherService.SaveGrade(data).subscribe(
+      () => {
+        this.messageService.add({severity:'success', summary: 'Success', detail: 'Department added'});
+        this.searchStudents();
+      },
+      (error) => {
+        console.error('Error adding department', error);
+        this.messageService.add({severity:'error', summary: 'Error', detail: 'Unable to add department'});
+      }
+    );
+
   }
 
-  
   cancel() {
     this.selectedClass = undefined;
     this.selectedSubject = undefined;

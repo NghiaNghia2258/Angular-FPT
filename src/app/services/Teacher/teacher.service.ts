@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { map, Observable, of } from 'rxjs';
 import { URL } from '../../shared/url/url_services';
-import { StudentGrades } from '../../interfaces/StudentGrades';
+import { AddGradeStudent, StudentGrades } from '../../interfaces/StudentGrades';
 
 @Injectable({
   providedIn: 'root',
@@ -36,6 +36,11 @@ export class TeacherService {
    return this.http.get<{data:StudentGrades[]}>(Api).pipe(
     map((data)=>data.data)
    )
+}
+
+
+SaveGrade(value:AddGradeStudent):Observable<void>{
+  return this.http.post<void>(URL.TEACHER.UPDATE_GRADE_STUDENT,value);
 }
 
   // Lấy danh sách giáo viên
