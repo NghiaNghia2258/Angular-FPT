@@ -43,6 +43,12 @@ SaveGrade(value:AddGradeStudent):Observable<void>{
   return this.http.post<void>(URL.TEACHER.UPDATE_GRADE_STUDENT,value);
 }
 
+
+  Get_Teacher_ID(id:number):Observable<any[]>{
+    return this.http.get<{data:any[]}>(URL.TEACHER.GET_BY_ID(id)).pipe(
+      map((data)=>data.data)
+    );
+  }
   // Lấy danh sách giáo viên
   getAllTeacher(): Observable<GetTeacher[]> {
     return this.http.get<{ data: GetTeacher[] }>(URL.TEACHER.GET).pipe(
@@ -55,14 +61,9 @@ SaveGrade(value:AddGradeStudent):Observable<void>{
   }
 
   // Cập nhật thông tin giáo viên
-  updateTeacher(code: number, updatedTeacher: Teacher): Observable<string> {
+  updateTeacher(updatedTeacher: any[]): Observable<string> {
     try {
-      const index = this.teachers.findIndex((t) => t.Code === code);
-      if (index !== -1) {
-        this.teachers[index] = { ...this.teachers[index], ...updatedTeacher };
-        return of('Cập nhật thành công!');
-      }
-      return of('Không tìm thấy giáo viên!');
+     return this.http.put<string>(URL.TEACHER.UPDATE,updatedTeacher);
     } catch {
       return of('Cập nhật thất bại!');
     }

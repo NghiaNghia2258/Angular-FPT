@@ -9,6 +9,8 @@ export const URL={
     TEACHER:{
         ADD:`${env.baseUrl}/Teacher`,
         GET:`${env.baseUrl}/Teacher?PageIndex=1&PageSize=10`,
+        GET_BY_ID:(id:number)=>`${env.baseUrl}/Teacher/${id}`,
+
         UPDATE:`${env.baseUrl}/Teacher`,
         DELETE:(id:number)=> `${env.baseUrl}/Teacher/${id}`,
         GETGRADE_IdClass_IdSubject:`${env.baseUrl}/Teacher/get-grade-by-classId-subjectId?`,

@@ -57,6 +57,71 @@
           </tr>
         </ng-template>
       </p-table>
+
+      <p-dialog
+        [(visible)]="displayDialog"
+        [style]="{ width: '800px' }"
+        header="Cập nhập thông tin giảng viên"
+        [modal]="true"
+        styleClass="p-fluid"
+      >
+        <ng-template pTemplate="content">
+          <div class="p-grid p-fluid">
+            <!-- Row 1 -->
+            <div class="p-field">
+              <label for="FullName">Họ và tên</label>
+              <input
+                id="FullName"
+                pInputText
+                type="text"
+                [(ngModel)]="teacher.fullName"
+                required
+                style="width: 100%"
+              />
+            </div>
+            <div class="p-field">
+              <label for="Email">Email</label>
+              <input
+                id="Email"
+                pInputText
+                type="email"
+                [(ngModel)]="teacher.email"
+                required
+                style="width: 100%"
+              />
+            </div>
+            <div class="p-field">
+              <label for="Phone">SDT</label>
+              <input
+                id="Phone"
+                pInputText
+                type="text"
+                [(ngModel)]="teacher.phone"
+                required
+                style="width: 100%"
+              />
+            </div>
+          </div>
+        </ng-template>
+        <ng-template pTemplate="footer">
+          <button
+            pButton
+            pRipple
+            label="Hủy"
+            icon="pi pi-times"
+            class="p-button-text"
+            (click)="displayDialog = false"
+          ></button>
+          <button
+            pButton
+            pRipple
+            label="Lưu"
+            icon="pi pi-check"
+            class="p-button-text"
+            (click)="UpdateTeacher(teacher.id)"
+          ></button>
+        </ng-template>
+      </p-dialog>
     </div>
   </div>
 </div>

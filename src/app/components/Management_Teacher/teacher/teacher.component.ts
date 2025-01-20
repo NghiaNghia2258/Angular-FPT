@@ -39,7 +39,7 @@ import { Route, Router } from '@angular/router';
 export class TeacherComponent implements OnInit{
   teachers: GetTeacher[] = [];
   departments:Faculty[]=[];
-  teacher: Teacher = {} as Teacher;
+  teacher: GetTeacher = {} as GetTeacher;
   displayDialog: boolean = false;
   isNewTeacher: boolean = false;
 
@@ -81,13 +81,13 @@ export class TeacherComponent implements OnInit{
 
   showDialogToAdd() {
     this.isNewTeacher = true;
-    this.teacher = {} as Teacher;
+    this.teacher = {} as GetTeacher;
     this.displayDialog = true;
   }
 
  
 
-  edit(teacher: Teacher) {
+  edit(teacher: GetTeacher) {
     this.teacher = {...teacher};
     this.isNewTeacher = false;
     this.displayDialog = true;
@@ -115,4 +115,24 @@ export class TeacherComponent implements OnInit{
     this.router.navigate(['/formaddTeacher']);
   }
 
+
+  UpdateTeacher(id:number){
+      this.teacherService.Get_Teacher_ID(id).subscribe(
+        (data)=>{
+          const UpdateTeacher={
+            ...data,
+            fullName:this.teacher.fullName,
+            email:this.teacher.email,
+            phone:this.teacher.phone
+          }
+          this.teacherService.updateTeacher(UpdateTeacher).subscribe(
+            ()=>{
+            this.messageService.add({severity:'success', summary: 'Success', detail: 'UPDATE TEACHER DONE'});
+              this.loadTeacher();
+              this.displayDialog = false;
+            }
+          )
+        }
+      )
+  }
 }
