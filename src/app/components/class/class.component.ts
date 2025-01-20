@@ -40,11 +40,16 @@ import { DropdownModule } from 'primeng/dropdown';
   styleUrl: './class.component.css'
 })
 export class ClassComponent implements OnInit{
+selectTeacher(_t145: any) {
+  console.log(_t145);
+}
+
   IdClass!:number;
   ListStudent:Student[]=[];
   Student_Class:Student[]=[];
   schoolClasss:GetSchoolClass[]=[];
   displayDialog: boolean = false;
+  displayDialog2: boolean = false;
   isNewSubject: boolean = false;
   searchAllStudents: string = '';
   searchClassStudents: string = '';
@@ -57,12 +62,22 @@ export class ClassComponent implements OnInit{
   selectedTeacher?: number ;
   Teachers:any[] = [];
   SchoolClassItem:GetSchoolClass={} as GetSchoolClass;
-  
+  subjects:any[]=[];
+  model:any = {
+    schoolClasssId:0,
+    teachers:[
+      {
+        teacherId: 0,
+        subjectId: 0
+      }
+    ]
+  };
 
   constructor(private classService:ClassService,
     private studentService:StudentService,
     private messageService: MessageService,
-    private teacherService:TeacherService
+    private teacherService:TeacherService,
+    private subjectService:SubjectService
   ){}
 
   ngOnInit(){
@@ -98,6 +113,33 @@ export class ClassComponent implements OnInit{
     this.loadStudent();
     this.displayDialog = true;
   }
+  showDialog2(arg0: any) {
+    this.displayDialog2 = true;
+    this.model = {
+      schoolClasssId:arg0
+    };
+    this.subjectService.getAllSubject(arg0).subscribe(
+      (data)=>{
+        this.subjects=data.map((item) => {
+          return {
+            ...item,
+            teachers: [
+              {
+                id:1,
+                name:"Abc"
+              },
+              {
+                id:2,
+                name:"Abc 2"
+              }
+            ]
+          }
+        })
+        console.log(this.subjects);
+      }
+    );
+
+    }
   searchAllStudentsFn() {
     
   }
