@@ -1,32 +1,46 @@
+import { TeacherReviews } from './../../interfaces/TeacherReviews';
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TableModule } from 'primeng/table';
 import { NavbarComponent } from "../../core/navbar/navbar.component";
 import {HeaderComponent} from '../../core/header/header.component'
 import { StudentService } from '../../services/Student/student.service';
+import { DialogModule } from 'primeng/dialog';
+import { FormsModule } from '@angular/forms';
+import { ConfirmationService, MessageService } from 'primeng/api';
+
 @Component({
   selector: 'app-student-grades',
   standalone: true,
   imports: [CommonModule, TableModule,
-    NavbarComponent,HeaderComponent
+    NavbarComponent,HeaderComponent,
+    DialogModule,FormsModule
   ],
+  providers: [ConfirmationService, MessageService],
+
   templateUrl: './student-grades.component.html',
   styleUrls: ['./student-grades.component.css'],
 })
 export class StudentGradesComponent implements OnInit {
   studentId: string = ''; // Mã sinh viên lấy từ localStorage
   studentGrades: any[] = []; // Bảng điểm của sinh viên
-
-  constructor(private studentService:StudentService ) {}
+  displayDialog: boolean = false;
+  teacherReviews:TeacherReviews={} as TeacherReviews;
+  StudentGradeId?:number=undefined;
+  constructor(private studentService:StudentService,
+    private messageService:MessageService
+   ) {}
 
   ngOnInit(): void {
     console.log("he");
     this.loadStudentGrades();
   }
-
+  showTeacherReviews(gradeId:number){
+      this.displayDialog=true;
+      this.StudentGradeId=gradeId;
+  }
   // Tải bảng điểm sinh viên
   loadStudentGrades() {
-    console.log("he");
     this.studentId = localStorage.getItem('userLoginId') || ''; // Lấy mã sinh viên từ localStorage
     if (!this.studentId) {
       alert('Không tìm thấy mã sinh viên. Vui lòng đăng nhập lại!');
@@ -50,5 +64,19 @@ export class StudentGradesComponent implements OnInit {
       grade.examGrade * 0.5 +
       grade.practicalGrade * 0.2
     );
+  }
+
+  addTeacherReview(value:any){
+        const data={
+          ...value,
+          StudentGradeId:this.StudentGradeId
+        }
+        this.studentService.TeacherReviews(data).subscribe(
+          ()=>{
+            this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Teacher added successfully' });
+            this.loadStudentGrades()
+          }
+        )
+
   }
 }

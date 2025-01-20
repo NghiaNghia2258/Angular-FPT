@@ -23,6 +23,7 @@
             <th>Thi</th>
             <th>Thực Hành</th>
             <th>Điểm Tổng Kết</th>
+            <th>Đánh giá giảng viên</th>
           </tr>
         </ng-template>
         <ng-template pTemplate="body" let-grade>
@@ -34,9 +35,87 @@
             <td>{{ grade.examGrade }}</td>
             <td>{{ grade.practicalGrade }}</td>
             <td>{{ calculateFinalGrade(grade) | number : "1.1-1" }}</td>
+            <td>
+              <div *ngIf="grade.status === 0; else notEvaluated" style="color: green;">
+                Đã đánh giá
+              </div>
+              <ng-template #notEvaluated>
+                <span (click)="showTeacherReviews(grade.id)" style="color: red; cursor: pointer;">
+                  Chưa đánh giá
+                </span>
+              </ng-template>
+              
+            </td>
           </tr>
         </ng-template>
       </p-table>
+      <p-dialog
+        [(visible)]="displayDialog"
+        [style]="{ width: '800px' }"
+        header="Đánh giá giảng viên"
+        [modal]="true"
+        styleClass="p-fluid"
+      >
+        <ng-template pTemplate="content">
+          <div class="p-grid p-fluid">
+            <!-- Row 1 -->
+            <div class="p-field">
+              <label for="Content">Content</label>
+              <input
+                id="Content"
+                pInputText
+                type="text"
+                [(ngModel)]="teacherReviews.Content"
+                required
+                style="width: 100%"
+              />
+            </div>
+            <div class="p-field">
+              <label for="Rating">Rating</label>
+              <input
+                id="Rating"
+                pInputText
+                type="number"
+                [(ngModel)]="teacherReviews.Rating"
+                required
+                style="width: 100%"
+              />
+            </div>
+            <div class="p-field">
+              <label for="Phone">Review</label>
+              <input
+                id="Review"
+                pInputText
+                type="text"
+                [(ngModel)]="teacherReviews.Review"
+                required
+                style="width: 100%"
+              />
+            </div>
+          </div>
+        </ng-template>
+        <ng-template pTemplate="footer">
+          <button
+  pButton
+  pRipple
+  label="Hủy"
+  icon="pi pi-times"
+  class="p-button-text"
+  (click)="displayDialog = false"
+></button>
+
+<button
+  pButton
+  pRipple
+  label="Lưu"
+  icon="pi pi-check"
+  class="p-button-text"
+  (click)="addTeacherReview(teacherReviews)"
+></button>
+
+        </ng-template>
+      </p-dialog>
     </div>
+    
   </div>
 </div>

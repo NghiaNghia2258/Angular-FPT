@@ -1,5 +1,6 @@
 export interface TeacherReviews{
     Content:string,
     Rating:number,
-    Review:string
+    Review:string,
+    StudentGradeId:number
 }

@@ -1,0 +1,97 @@
+
+/* Bảng */
+p-table {
+    width: 100%;
+    margin-top: 20px;
+  }
+  
+  /* Header của bảng */
+  p-table th {
+    background-color: #2980b9;
+    color: white;
+    text-align: left;
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  /* Dòng trong bảng */
+  p-table tr {
+    transition: background-color 0.2s ease;
+  }
+  
+  p-table tr:hover {
+    background-color: #f4f6f7;
+  }
+  
+  /* Cell của bảng */
+  p-table td {
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  /* Đánh giá giảng viên */
+  td div {
+    font-weight: bold;
+  }
+/* Dialog */
+p-dialog {
+    border-radius: 10px;
+  }
+  
+  p-dialog .p-dialog-header {
+    background-color: #3498db;
+    color: white;
+  }
+  
+  p-dialog .p-dialog-content {
+    padding: 20px;
+  }
+  
+  p-dialog .p-dialog-footer {
+    text-align: right;
+  }
+  
+  /* Các trường nhập liệu */
+  .p-field label {
+    font-weight: bold;
+    margin-bottom: 5px;
+    display: block;
+    color: #333;
+  }
+  
+  .p-field input {
+    border: 1px solid #ccc;
+    padding: 8px;
+    border-radius: 5px;
+    width: 100%;
+  }
+  
+  /* Nút bấm */
+  button.p-button-text {
+    background-color: #3498db;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+  }
+  
+  button.p-button-text:hover {
+    background-color: #2980b9;
+  }
+/* Thay đổi con trỏ khi hover vào "Chưa đánh giá" */
+span[style="color: red; cursor: pointer;"] {
+    font-weight: bold;
+    text-decoration: underline;
+  }
+  
+  /* Hiển thị mượt mà */
+  body {
+    font-family: 'Arial', sans-serif;
+    line-height: 1.5;
+    background-color: #f9f9f9;
+    margin: 0;
+    padding: 0;
+  }
+        

@@ -21,7 +21,8 @@ export const URL={
         ADD:`${env.baseUrl}/Student`,
         DELETE:(id:number)=>`${env.baseUrl}/Student/${id}`,
         GETSTUDENT_IDCLASS:(Id:number)=>`${env.baseUrl}/Student/get-by-class-id?schoolClassId=${Id}`,
-        GETGRADEBYID:(Id:number)=>`${env.baseUrl}/Student/get-grades/${Id}`
+        GETGRADEBYID:(Id:number)=>`${env.baseUrl}/Student/get-grades/${Id}`,
+        TEACHEREVIEW:`${env.baseUrl}`,
     },
     CLASS:{
         GET:`${env.baseUrl}/SchoolClass`,

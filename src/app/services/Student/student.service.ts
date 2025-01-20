@@ -1,3 +1,4 @@
+import { TeacherReviews } from './../../interfaces/TeacherReviews';
 import { Injectable } from '@angular/core';
 import { Student, StudentAdd } from '../../interfaces/Student';
 import { HttpClient } from '@angular/common/http';
@@ -59,5 +60,9 @@ export class StudentService {
     } catch {
       return of('Có lỗi xảy ra khi xóa sinh viên!');
     }
+  }
+
+  TeacherReviews(value:TeacherReviews):Observable<string>{
+    return this.http.post<string>(URL.STUDEN.TEACHEREVIEW,value);
   }
 }
