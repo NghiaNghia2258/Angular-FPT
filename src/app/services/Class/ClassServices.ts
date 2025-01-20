@@ -14,6 +14,11 @@ export class ClassService {
   constructor(private http: HttpClient) { }
 
  
+  GetSchoolClass_ByID(id:number): Observable<any[]> {
+    return this.http.get<{ data: any[] }>(URL.CLASS.GET_ByID(id)).pipe(
+      map((response) => response.data) 
+    );
+  }
   GetSchoolClass(): Observable<any[]> {
     return this.http.get<{ data: any[] }>(URL.CLASS.GET).pipe(
       map((response) => response.data) 
@@ -47,6 +52,9 @@ export class ClassService {
     catch{
         return of("Có lỗi sảy ra khi xóa !");
     }
+  }
+  UpdateSchoolClass(value:any):Observable<string>{
+    return this.http.put<string>(URL.CLASS.UPDATE,value);
   }
 }
 

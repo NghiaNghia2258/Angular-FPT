@@ -60,6 +60,11 @@ export class AddTeacherComponent implements OnInit{
     this.loadSubject();
   }
 
+  onFacultyChange(event:any){
+    this.departmentService.getFacultyByID(event.value).subscribe(
+      (data)=>this.subjects=data
+    );
+  }
   loadSubject(){
     this.subjectService.getAllSubject().subscribe(
       (data)=>{

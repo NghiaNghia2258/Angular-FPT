@@ -11,8 +11,14 @@ export class SubjectService {
   constructor(private http: HttpClient) {}
 
   // Lấy danh sách môn học
-  getAllSubject(): Observable<Subject[]> {
-    return this.http.get<{data:Subject[]}>(URL.Subject(1,10)).pipe(
+  getAllSubject(idClass?:number): Observable<Subject[]> {
+    let api=URL.Subject(1,10);
+    if(idClass)
+    {
+      api+= `&ClassId=${idClass}`
+    }
+
+    return this.http.get<{data:Subject[]}>(api).pipe(
       map((response)=>response.data)
     ); 
   }

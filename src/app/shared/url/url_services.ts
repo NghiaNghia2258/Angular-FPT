@@ -23,6 +23,8 @@ export const URL={
     },
     CLASS:{
         GET:`${env.baseUrl}/SchoolClass`,
+        GET_ByID:(id:number)=>`${env.baseUrl}/SchoolClass/${id}`,
+
         UPDATE:`${env.baseUrl}/SchoolClass`,
         DELETE:(Id:number)=>`${env.baseUrl}/SchoolClass/${Id}`,
         ADD_STUDENT:`${env.baseUrl}/SchoolClass/add-students-to-class`,

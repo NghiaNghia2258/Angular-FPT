@@ -37,4 +37,33 @@
   .p-dialog .p-button {
     margin-right: 5px;
   }
+
+  p-table th, p-table td {
+    text-align: center;
+    vertical-align: middle;
+  }
+  
+  p-table td button {
+    margin: 0 5px;
+  }
+  
+  h1.titel {
+    text-align: center;
+    font-size: 1.8rem;
+    margin-bottom: 20px;
+  }
+  
+  .container {
+    margin: 0 auto;
+    padding: 10px;
+  }
+  
+  p-dialog .p-inputgroup input {
+    flex: 1;
+    margin-right: 5px;
+  }
+  
+  p-dialog .p-inputgroup button {
+    flex-shrink: 0;
+  }
   

@@ -1,3 +1,4 @@
+import { env } from './../../shared/environment/environment';
 import { StudentService } from './../../services/Student/student.service';
 import { TeacherService } from './../../services/Teacher/teacher.service';
 import { SubjectService } from './../../services/Subject/subject.service';
@@ -53,7 +54,6 @@ export class LearningoutcomesComponent implements OnInit {
 
   ngOnInit(): void {
     this.loadClasses();
-    this.loadSubjects();
     this.loadStudent();
   }
 
@@ -68,17 +68,20 @@ export class LearningoutcomesComponent implements OnInit {
       })
     );
   }
-
+  searchSubject(env:any){
+    this.loadSubjects(env.value);
+  }
   loadStudent(){
     this.StudentService.getAllStudent().subscribe(
       (data)=>this.students=data
     );
   }
-  loadSubjects() {
-    this.SubjectService.getAllSubject().subscribe(
+  loadSubjects(IdClass:number) {
+    this.SubjectService.getAllSubject(IdClass).subscribe(
       (data)=>this.subjects=data
     );
   }
+  
 
   
   searchStudents() {

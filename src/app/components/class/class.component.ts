@@ -1,6 +1,7 @@
+import { TeacherService } from './../../services/Teacher/teacher.service';
 import { StudentService } from './../../services/Student/student.service';
 import { ClassService } from './../../services/Class/ClassServices';
-import { GetSchoolClass, SchoolClass } from './../../interfaces/SchoolClass';
+import { GetSchoolClass, SchoolClass, UpdateSchoolClass } from './../../interfaces/SchoolClass';
 import { Subject } from './../../interfaces/Subject';
 import { SubjectService } from './../../services/Subject/subject.service';
 import { Component, OnInit } from '@angular/core';
@@ -17,6 +18,7 @@ import { NavbarComponent } from "../../core/navbar/navbar.component";
 import {HeaderComponent} from '../../core/header/header.component'
 import { Student } from '../../interfaces/Student';
 import { SchoolClassStudent } from '../../interfaces/SchoolClassStudent';
+import { DropdownModule } from 'primeng/dropdown';
 @Component({
   selector: 'app-class',
   standalone: true,
@@ -30,7 +32,8 @@ import { SchoolClassStudent } from '../../interfaces/SchoolClassStudent';
     ConfirmDialogModule,
     ToastModule,
     NavbarComponent,
-    HeaderComponent
+    HeaderComponent,
+    DropdownModule
   ],
   providers: [ConfirmationService, MessageService],
   templateUrl: './class.component.html',
@@ -51,17 +54,25 @@ export class ClassComponent implements OnInit{
   selectedClassStudent: any;
   selectedStudents: Student[] = []; 
   selectedClassStudents: Student[] = []; 
+  selectedTeacher?: number ;
+  Teachers:any[] = [];
+  SchoolClassItem:GetSchoolClass={} as GetSchoolClass;
   
 
   constructor(private classService:ClassService,
     private studentService:StudentService,
-    private messageService: MessageService
+    private messageService: MessageService,
+    private teacherService:TeacherService
   ){}
 
   ngOnInit(){
    this.loadSchoolClass();
   }
-
+  loadTeachers(){
+      this.teacherService.getAllTeacher().subscribe(
+        (data)=>this.Teachers=data
+      );
+  }
   loadStudent(){
       this.studentService.getAllStudent().subscribe(
         (data)=>this.ListStudent=data
@@ -78,9 +89,11 @@ export class ClassComponent implements OnInit{
       (data)=>this.Student_Class=data
     );
   }
-  showDialogToAdd(id:number) {
+  showDialogToAdd(id:any) {
+    this.SchoolClassItem=id;
+    this.loadTeachers();
     this.IdClass=id;
-    this.loadStudent_Class(id);
+    this.loadStudent_Class(id.id);
     this.isNewSubject = true;
     this.loadStudent();
     this.displayDialog = true;
@@ -122,6 +135,28 @@ export class ClassComponent implements OnInit{
       }
     );
   }
-
-  
+  getTeacherName(teacherId: number): string {
+    const teacher = this.Teachers.find(t => t.id === teacherId);
+    return teacher ? teacher.name : 'N/A';
+  }
+  saveClassInfo() {
+    this.classService.GetSchoolClass_ByID(this.SchoolClassItem.id).subscribe(
+      (data)=>{
+        var updateTeacher={
+          ...data,
+          homeroomTeacherId:this.SchoolClassItem.homeroomTeacherId,
+          maxStudents:this.SchoolClassItem.maxStudents
+        }
+        this.classService.UpdateSchoolClass(updateTeacher).subscribe(
+          ()=>{
+            this.messageService.add({severity:'success', summary: 'Success', detail: 'SchoolClass added'});
+            this.isNewSubject = false;
+            this.loadSchoolClass();
+            this.displayDialog = false;
+          }
+        )
+      }
+    )
+    
+  }
 }

@@ -16,4 +16,9 @@ export interface GetSchoolClass{
       majorId: number,
       majorName: string
 }
+export interface UpdateSchoolClass{
+  id: number,
+  homeroomTeacherId?: number,
+  maxStudents: number
+}
   
