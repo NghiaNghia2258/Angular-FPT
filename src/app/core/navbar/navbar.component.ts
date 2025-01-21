@@ -113,6 +113,16 @@ export class NavbarComponent implements OnInit {
               icon: 'pi pi-search',
               command: () => this.navigateTo('/Learningoutcomesmanagement')
             },
+            {
+              label: 'Quản Lý tài khoản',
+              icon: 'pi pi-search',
+              command: () => this.navigateTo('/account')
+            },
+            {
+              label: 'Xem Đánh giá',
+              icon: 'pi pi-search',
+              command: () => this.navigateTo('/showTeacherReview')
+            },
           ]
         },
         {

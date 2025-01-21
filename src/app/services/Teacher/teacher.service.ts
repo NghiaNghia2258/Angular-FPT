@@ -4,6 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { map, Observable, of } from 'rxjs';
 import { URL } from '../../shared/url/url_services';
 import { AddGradeStudent, StudentGrades } from '../../interfaces/StudentGrades';
+import { GETTeacherReviews, TeacherReviews } from '../../interfaces/TeacherReviews';
 
 @Injectable({
   providedIn: 'root',
@@ -76,5 +77,11 @@ SaveGrade(value:AddGradeStudent):Observable<void>{
     } catch {
       return of('Có lỗi xảy ra khi xóa!');
     }
+  }
+
+  getFeedBack_By_ID(id:number):Observable<GETTeacherReviews[]>{
+    return this.http.get<{data:GETTeacherReviews[]}>(URL.TEACHER.GETTEACHERREVIEW_BY_ID(id)).pipe(
+      map((data)=>data.data)
+    );
   }
 }

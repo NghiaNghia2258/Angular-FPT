@@ -57,16 +57,15 @@ export class AddTeacherComponent implements OnInit{
   ngOnInit() {
     this.loadTeacher();
     this.loadDepartment();
-    this.loadSubject();
   }
 
   onFacultyChange(event:any){
-    this.departmentService.getFacultyByID(event.value).subscribe(
+    this.subjectService.getSubject_IdKhoa(event.value).subscribe(
       (data)=>this.subjects=data
     );
   }
-  loadSubject(){
-    this.subjectService.getAllSubject().subscribe(
+  loadSubject(id:number){
+    this.subjectService.getSubject_IdKhoa(id).subscribe(
       (data)=>{
         this.subjects=data;
       },

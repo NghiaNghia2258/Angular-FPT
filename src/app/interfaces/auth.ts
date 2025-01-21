@@ -11,3 +11,10 @@ export interface User {
 export interface Login{
     accessToken: string
 }
+
+
+export interface Account{
+  id:number,
+  username:string,
+   rolegroupName:string
+}

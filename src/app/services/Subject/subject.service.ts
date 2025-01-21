@@ -23,6 +23,14 @@ export class SubjectService {
     ); 
   }
 
+
+  getSubject_IdKhoa(id:number): Observable<Subject[]> {
+  
+    return this.http.get<{data:Subject[]}>(URL.Subject_IDKhoa(id)).pipe(
+      map((response)=>response.data)
+    ); 
+  }
+
   // Thêm môn học mới
   addSubject(subject: Subject): Observable<string> {
     try {
